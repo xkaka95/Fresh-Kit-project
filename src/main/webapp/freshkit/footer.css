@@ -1,0 +1,23 @@
+@charset "UTF-8";
+#footer{position:relative;}
+
+
+#footer .footer_wrap {position:relative; min-width:1260px; height:290px; margin:0 auto; background-color:#82ac64; text-align:center}
+#footer .footer_cont {width:1180px; margin:0 auto; text-align:left}
+
+#footer .footer_wrap .fl_l {float:left; width:280px; padding-top:36px;}
+#footer .footer_wrap .fl_c {float:left; width:630px; padding-top:20px;}
+#footer .footer_wrap .fl_r {float:right; color:#177a0e; padding-top:32px;}
+#footer .footer_wrap .fl_r .line {color:#177a0e;}
+
+#footer .footer_wrap .copy {padding:45px 0 0 1px; color:#808080; font-size:12px; line-height:20px;}
+#footer .footer_wrap .menu { width:100%; overflow:hidden; }
+#footer .footer_wrap .menu ul {width:625px; margin-left:-25px; margin-top:10px;}
+#footer .footer_wrap .menu li {float:left; list-style: none; padding-right:24px;}
+#footer .footer_wrap .menu li a {color:#fff; font-weight:700; font-size:13px; line-height:21px;}
+#footer .footer_wrap .menu li.bg a {color:#177a0e ;}
+
+#footer .footer_wrap .f_info {width:100%; overflow:hidden; padding-top:30px; width:630px;}
+#footer .footer_wrap .f_info .f_info_cont { margin-left:-9px;}
+#footer .footer_wrap .f_info p {float:left; margin-top:6px; padding-right:8px; color:#202020; font-size:12px; line-height:20px; white-space:nowrap;}
+#footer .footer_wrap .f_cs_info {overflow:hidden; color: #202020; margin-top:18px;}
