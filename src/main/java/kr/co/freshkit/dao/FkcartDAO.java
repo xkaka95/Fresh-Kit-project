@@ -13,14 +13,11 @@ import kr.co.freshkit.vo.FkcartVO;
 
 
 public class FkcartDAO {
-	String driver = "com.mysql.cj.jdbc.Driver";
-//	String url = "jdbc:mysql://서버IP:port번호/mysql내접속할db명"
-	String url = "jdbc:mysql://freshkit.chfv6yulywaz.ap-northeast-2.rds.amazonaws.com:3306/semidb";
-	String user = "admin";
-	String password ="dkssud1234";
-
-	
-	Connection conn =null;
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+	String user = "scott";
+	String password = "tiger";
+	Connection conn = null;
 	PreparedStatement pstmt = null;
 	StringBuffer sb = new StringBuffer();
 	ResultSet rs = null;
@@ -65,6 +62,35 @@ public ArrayList<FkcartVO> selectAll(){
 		}
 		return list;
 	}//selectAll()end
+
+public ArrayList<FkcartVO> selectAll2(int no){
+	
+	sb.setLength(0);
+	sb.append("SELECT * FROM fkcart ");
+	sb.append("where no = ? ");
+	ArrayList <FkcartVO> list = new ArrayList<FkcartVO>();
+	
+	try {
+		pstmt=conn.prepareStatement(sb.toString());
+		pstmt.setInt(1, no);
+		
+		rs=pstmt.executeQuery();
+		
+		while(rs.next()) {
+			int cno = rs.getInt("cno");
+			int pcount = rs.getInt("pcount");
+			int pno = rs.getInt("pno");
+			
+			FkcartVO vo = new FkcartVO(cno, pcount, pno, no);
+			list.add(vo);
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return list;
+}//selectAll()end
+
 public FkcartVO selectOne(int cno) {
 	sb.setLength(0);
 	sb.append("SELECT * FROM fkcart ");
@@ -98,20 +124,16 @@ public FkcartVO selectOne(int cno) {
 	return vo;
 
 }
-public void insertOne(FkcartVO vo) {
+public void insertOne(int pno, int no) {
 	sb.setLength(0);
 	sb.append("INSERT INTO fkcart ");
-	sb.append("VALUES (null,?,?,?) ");
+	sb.append("VALUES (fkcart_cno_seq.nextval,1,?,?) ");
 	
 	try {
 		pstmt = conn.prepareStatement(sb.toString());
-	
-	
 		
-		pstmt.setInt(1, vo.getCno());
-		pstmt.setInt(2, vo.getPcount());
-		pstmt.setInt(3, vo.getPno());
-		pstmt.setInt(4, vo.getNo());
+		pstmt.setInt(1, pno);
+		pstmt.setInt(2, no);
 		
 		pstmt.executeUpdate();
 		

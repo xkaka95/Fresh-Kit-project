@@ -122,11 +122,11 @@
 					FkproductVO vo2 = null;
 					
 					for(FkorderVO vo : list){
-						vo2 = dao2.selectOne2(vo.getPno());
+						vo2 = dao2.selectOne(vo.getPno());
 				%>
 				<tr>
 					<td><img src="<%=vo2.getPimg1()%>" alt=""></td>
-					<td><%=vo2.getPname()%></td>
+					<td><a href="fkproductDetail.jsp?pno=<%=vo2.getPno()%>"><%=vo2.getPname()%></a></td>
 					<td><%=vo.getOdate()%></td>
 					<td><%=vo.getOno() %></td>
 					<td><%=vo.getOprice() %>(<%=vo.getCount() %>)</td>

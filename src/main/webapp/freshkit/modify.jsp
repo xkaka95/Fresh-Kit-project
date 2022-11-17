@@ -1,3 +1,4 @@
+<%@page import="javax.servlet.jsp.tagext.TryCatchFinally"%>
 <%@page import="kr.co.freshkit.vo.FkcustomerVO"%>
 <%@page import="kr.co.freshkit.dao.FkcustomerDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -222,21 +223,24 @@
 			<p id="p2">개인정보확인/수정</p>
 			<form action="modifyOk.jsp" method="post" id="modifyNext">
 			<%
-				request.setCharacterEncoding("UTF-8");
-				response.setContentType("text/html;charset=UTF-8");
+					request.setCharacterEncoding("UTF-8");
+					response.setContentType("text/html;charset=UTF-8");
+					
+					/* String nno = request.getParameter("no");
+					
+					int no = Integer.parseInt(nno); */
+					int no = 1; // test용 임시값 (추후삭제)
 				
-				/* String nno = request.getParameter("no");
+					FkcustomerDAO dao = new FkcustomerDAO();
+					
+					FkcustomerVO vo = dao.selectOne(no);
+					
+					if(vo!=null){									
 				
-				int no = Integer.parseInt(nno); */
-				
-				int no = 18; // test용 임시값 (추후삭제)
-				
-				FkcustomerDAO dao = new FkcustomerDAO();
-				
-				FkcustomerVO vo = dao.selectOne(no);
+					int at = vo.getEmail().indexOf("@");
 			
-				int at = vo.getEmail().indexOf("@");
 			%>
+			
             <table class="table table-borderless" style="width: 850px;">
                 <tr id="noneno"> <!-- test후에 안보이게 css display:none; -->
                     <td>고객번호</td>
@@ -291,7 +295,16 @@
 
             </table>
 
-            </form>                
+            </form>
+            <%
+					}else{
+			%>
+					<script>
+						location.href= "login.jsp";
+					</script>
+			<%
+					}
+            %>                
                 <p class="text-center">
                    	<input type="button" class="btn btn-success" value="회원정보 수정완료" id="success" />
                 </p>

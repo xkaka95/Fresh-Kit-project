@@ -52,8 +52,8 @@
             padding-right: 200px;
         }
 		td>a>img {
-			width: 350px;
-			height: 400px;
+			width: 366px;
+			height: 366px;
             margin-top: 20px;
 		}
 
