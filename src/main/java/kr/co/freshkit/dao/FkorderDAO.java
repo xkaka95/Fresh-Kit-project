@@ -16,11 +16,11 @@ import kr.co.freshkit.vo.FkorderVO;
 
 
 public class FkorderDAO {
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://freshkit.chfv6yulywaz.ap-northeast-2.rds.amazonaws.com:3306/semidb";
-	String user = "admin";
-	String password ="dkssud1234";
-	Connection conn = null;
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+	String id = "scott";
+	String pw = "tiger";
+	Connection conn=null;
 	PreparedStatement pstmt = null;
 	StringBuffer sb = new StringBuffer();
 	ResultSet rs = null;
@@ -28,7 +28,7 @@ public class FkorderDAO {
 	public FkorderDAO() {
 		try {
 			Class.forName(driver);
-			conn = DriverManager.getConnection(url, user, password);
+			conn = DriverManager.getConnection(url, id, pw);
 			System.out.println("conn : " + conn);
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패");
@@ -42,7 +42,7 @@ public class FkorderDAO {
 		ArrayList<FkorderVO> list = new ArrayList<FkorderVO>();
 
 		sb.setLength(0);
-		sb.append("select ono,odate,pno,count,oprice,ostatus,omessage,oaddress,opost,oname,ophone,no ");
+		sb.append("select * ");
 		sb.append("from fkorder ");
 
 		try {
@@ -73,8 +73,46 @@ public class FkorderDAO {
 		return list;
 	}
 	
-	public FkorderVO selectOne(Long ono) {
+	// 고객번호로 찾기 (주문배송조회용)
+	public ArrayList<FkorderVO> selectAll2(int no) {
 		ArrayList<FkorderVO> list = new ArrayList<FkorderVO>();
+
+		sb.setLength(0);
+		sb.append("select * ");
+		sb.append("from fkorder ");
+		sb.append("where no = ? ");
+
+		try {
+			pstmt = conn.prepareStatement(sb.toString());
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+
+			
+			while (rs.next()) {
+				Long ono = rs.getLong("ono");
+				Timestamp odate = rs.getTimestamp("odate");
+				int pno =  rs.getInt("pno");
+				int count =  rs.getInt("count");
+				int oprice =  rs.getInt("oprice");
+				String ostatus = rs.getString("ostatus");
+				String omessage = rs.getString("omessage");
+				String oaddress = rs.getString("oaddress");
+				String opost = rs.getString("opost");
+				String oname = rs.getString("oname");
+				String ophone = rs.getString("ophone");
+				FkorderVO vo = new FkorderVO(ono,odate,pno,count,oprice,ostatus,omessage,oaddress,opost,oname,ophone,no);
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	 
+
+	public FkorderVO selectOne(Long ono) {
 
 		sb.setLength(0);
 		sb.append("select odate,pno,count,oprice,ostatus,omessage,oaddress,opost,oname,ophone,no ");
