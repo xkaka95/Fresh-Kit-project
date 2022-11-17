@@ -11,9 +11,10 @@
 			<%
 				request.setCharacterEncoding("UTF-8");
 				response.setContentType("text/html;charset=UTF-8");
-			
-				String id = request.getParameter("id");
-				String name = request.getParameter("name");
+				
+				String nono = request.getParameter("no");
+				int no = Integer.parseInt(nono);
+
 				String gender = request.getParameter("gender");
 				
 				String email1 = request.getParameter("email1");
@@ -31,7 +32,7 @@
 				
 				FkcustomerDAO dao = new FkcustomerDAO();
 				
-				dao.modifyOne2(name, gender, email, addrs, post, phone, id);
+				dao.modifyOne2(gender, email, addrs, post, phone, no);
 				
 			%>
 				<script>

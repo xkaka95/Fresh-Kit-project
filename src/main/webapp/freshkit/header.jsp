@@ -10,8 +10,8 @@
                 <ul>
                     <li><a href="https://www.cjone.com/cjmweb/join.do?coopco_cd=7060&amp;brnd_cd=6130&amp;mcht_no=6130&amp;etc1=PC&amp;etc2=ckgs"
                             target="_blank">회원가입</a></li>
-                    <li><a href="javascript:cj.login(null, null, null, 'gnb_login');">로그인</a></li>
-                    <li><a href="/pc/cs/csMain?wid1=gnb_cs">고객센터</a></li>
+                    <li><a href="#">로그인</a></li>
+                    <li><a href="fkcs.jsp">고객센터</a></li>
                 </ul>
             </div>
         </div>
@@ -21,16 +21,16 @@
             <ul class="list_gmenu">
 
                 <li>
-                    <a href="/pc/cn/cookitIntro?wid1=gnb_intro" target="_self">FRESH KIT 소개</a>
+                    <a href="info.jsp" target="_self">FRESH KIT 소개</a>
                 </li>
                 <li>
-                    <a href="/pc/menu/menuList?dlUnstScheDd=ALL&amp;wid1=gnb_menu" target="_self">FRESH KIT 메뉴</a>
+                    <a href="menu.jsp" target="_self">FRESH KIT 메뉴</a>
                 </li>
                 <li>
-                    <a href="/pc/rvw/review?wid1=gnb_review" target="_self">리뷰</a>
+                    <a href="fkreview.jsp" target="_self">리뷰</a>
                 </li>
                 <li>
-                    <a href="/pc/event/eventMain?wid1=gnb_event" target="_self">공지사항</a>
+                    <a href="#" target="_self">공지사항</a>
                 </li>
                 <li>
                     <a href="orderList.jsp" target="_self">MY프레시킷</a>
@@ -41,13 +41,13 @@
             <div class="my_gmenu">
                 <ul>
                     <li class="g_od">
-                        <a href="/pc/order/cartList?wid1=gnb_cart">
+                        <a href="cart.html">
                                                         
                             <span class="txt">장바구니</span>
                         </a>
                     </li>
                     <li class="g_mu">
-                    <a href="/pc/menu/searchList?wid1=gnb_search_menu">
+                    <a href="search.html">
                     <span class="txt">메뉴찾기</span>
                     </a>
                 </ul>

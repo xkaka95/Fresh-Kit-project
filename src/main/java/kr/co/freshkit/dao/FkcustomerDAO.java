@@ -321,23 +321,22 @@ public class FkcustomerDAO {
 		
 	}
 	// id 입력값으로 변경 (마이페이지)
-	public void modifyOne2(String name, String gender, String email, String addrs, String post, String phone, String id) {
+	public void modifyOne2(String gender, String email, String addrs, String post, String phone, int no) {
 		sb.setLength(0);
 		sb.append("update fkcustomer ");
-		sb.append("set name=?, gender=?, email=?, address=?, post=?, phone=? ");
-		sb.append("where id=? ");
+		sb.append("set gender=?, email=?, address=?, post=?, phone=? ");
+		sb.append("where no=? ");
 		
 				
 		try {
 			pstmt = conn.prepareStatement(sb.toString());			
 			
-			pstmt.setString(1, name);
-			pstmt.setString(2, gender);
-			pstmt.setString(3, email);
-			pstmt.setString(4, addrs);
-			pstmt.setString(5, post);
-			pstmt.setString(6, phone);
-			pstmt.setString(7, id);
+			pstmt.setString(1, gender);
+			pstmt.setString(2, email);
+			pstmt.setString(3, addrs);
+			pstmt.setString(4, post);
+			pstmt.setString(5, phone);
+			pstmt.setInt(6, no);
 			
 			pstmt.executeUpdate();
 		} catch (SQLException e) {

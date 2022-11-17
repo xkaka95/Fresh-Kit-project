@@ -128,10 +128,7 @@
 			
 			gender.value = $('input[name="gen"]:checked').val();
 			
-			if($.trim($("#name").val())==''){
-		      	alert("이름을 입력해주세요.");
-		      	return false;
-	    	}else if($.trim($("#email1").val())==''||$.trim($("#email2").val())=='') {
+	    	if($.trim($("#email1").val())==''||$.trim($("#email2").val())=='') {
 	    		alert("이메일을 입력해주세요.");
 	    		return false;
 	    	}else if($.trim($("#post").val())=='') {
@@ -217,15 +214,9 @@
 	<jsp:include page="header.jsp"/>
 	
 	<div id="container">
-		<div id="side1">
-            <br><br>
-			<p id="p1">MY프레시킷</p><br><br>
-			<p><a href="orderList.jsp">주문목록/배송조회</a></p>
-			<p><a href="#">장바구니</a></p>
-			<p><a href="#">QnA</a></p>
-			<p><a href="modify.jsp">개인정보확인/수정</a></p>
-			<p><a href="withdrawal.jsp">회원탈퇴</a></p>
-		</div>
+	
+		<jsp:include page="sidebar1.jsp"/>
+		
 		<div id="contents">
             <br><br>
 			<p id="p2">개인정보확인/수정</p>
@@ -253,34 +244,29 @@
                 </tr>
                 <tr>
                     <td>아이디</td>
-                    <td><input type="text" name="id" id="id" value="<%=vo.getId()%>" readonly></td>
+                    <td><%=vo.getId()%></td>
                 </tr>
                 <tr>
                     <td>이름</td>
-                    <td><input type="text" name="name" id="name" value="<%=vo.getName()%>" readonly></td>
-                </tr>
-    
-                <tr>
-                    <td>비밀번호</td>
-                    <td>*******</td>
+                    <td><%=vo.getName()%></td>
                 </tr>
                 <tr>
                     <td>이메일</td>
                     <td><input type="text" name="email1" id="email1" value="<%=vo.getEmail().substring(0,at)%>"> @ <input type="text" name="email2" id="email2" value="<%=vo.getEmail().substring(at+1)%>"> 
                         <select name="emailSelect" id="emailSelect" onchange="changeEmail(this.value)">
+                            <option value="직접입력">직접입력</option>
                             <option value="naver.com">naver.com</option>
                             <option value="gmail.com">gmail.com</option>
-                            <option value="직접입력">직접입력</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td>우편번호</td>
-                    <td><input type="text" name="post" id="post" value="<%=vo.getPost() %>" style="width: 100px"></td>
-                </tr>
-                <tr>
                 	<td>현재 주소</td>
                 	<td><input type="text" name="" id="" value="<%=vo.getAddress() %>" style="width: 450px;"></td>
+                </tr>
+                <tr>
+                    <td>우편번호</td>
+                    <td><input type="text" name="post" id="post" value="<%=vo.getPost() %>" style="width: 100px"></td>
                 </tr>
                 <tr>
                 	<td>수정할 주소</td>

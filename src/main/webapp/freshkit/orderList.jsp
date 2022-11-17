@@ -95,15 +95,7 @@
 	<jsp:include page="header.jsp"/>	
 	
 	<div id="container">
-		<div id="side1">
-            <br><br>
-			<p id="p1">MY프레시킷</p><br><br>
-			<p><a href="orderList.jsp">주문목록/배송조회</a></p>
-			<p><a href="#">장바구니</a></p>
-			<p><a href="#">QnA</a></p>
-			<p><a href="modify.jsp">개인정보확인/수정</a></p>
-			<p><a href="withdrawal.jsp">회원탈퇴</a></p>
-		</div>
+		<jsp:include page="sidebar1.jsp"/>
 
 		<div id="contents">
             <br><br>
@@ -137,7 +129,7 @@
 					<td><%=vo2.getPname()%></td>
 					<td><%=vo.getOdate()%></td>
 					<td><%=vo.getOno() %></td>
-					<td><%=vo.getOprice() %></td>
+					<td><%=vo.getOprice() %>(<%=vo.getCount() %>)</td>
 					<td><%=vo.getOstatus() %></td>
 				</tr>
 				<%
