@@ -42,7 +42,7 @@
             width: 100%;
             max-width: 1280px;
 			position: absolute;
-            top: 100%;
+            top: 1250px;
             left: 50%;
             transform: translate(-50%,-50%);
             font-family: 'Noto Sans KR', sans-serif;
@@ -287,7 +287,7 @@
             <div>
                 <table style="width: 82%;" class="table-borderless">
                     <tr>
-                        <th id="weekBest" span="3">베스트메뉴</th>
+                        <th id="weekBest">베스트메뉴</th>
                     </tr>
                     <%
                     FkproductDAO dao = new FkproductDAO();
