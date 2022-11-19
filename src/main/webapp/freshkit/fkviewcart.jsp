@@ -1,11 +1,8 @@
+<%@page import="java.util.HashSet"%>
+<%@page import="java.util.Arrays"%>
+<%@page import="java.util.LinkedHashSet"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<!DOCTYPE html>
-
-
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Iterator"%>
@@ -14,79 +11,25 @@
 <%@page import="kr.co.freshkit.vo.FkproductVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="kr.co.freshkit.dao.FkproductDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+</html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>freshkit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" type="text/css" href="footer.css">
     <link rel="stylesheet" type="text/css" href="footer.css">
     <link rel="stylesheet" type="text/css" href="header.css">
-    <title>freshkit</title>
-</head>
 
-<body>
-
-    <!-- header -->
-    <header id="head">
-        <div class="gnb_wrap">
-            <div class="gnb_util">
-                <div class="util_wrap">
-                    <ul>
-                        <li><a href="https://www.cjone.com/cjmweb/join.do?coopco_cd=7060&amp;brnd_cd=6130&amp;mcht_no=6130&amp;etc1=PC&amp;etc2=ckgs"
-                                target="_blank">회원가입</a></li>
-                        <li><a href="javascript:cj.login(null, null, null, 'gnb_login');">로그인</a></li>
-                        <li><a href="/pc/cs/csMain?wid1=gnb_cs">고객센터</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="gnb_menu">
-                <h1 class="logo"><a href="header.html"><span class="hide">freshkit</span></a></h1>
-
-                <ul class="list_gmenu">
-
-                    <li>
-                        <a href="/pc/cn/cookitIntro?wid1=gnb_intro" target="_self">FRESH KIT 소개</a>
-                    </li>
-                    <li>
-                        <a href="/pc/menu/menuList?dlUnstScheDd=ALL&amp;wid1=gnb_menu" target="_self">FRESH KIT 메뉴</a>
-                    </li>
-                    <li>
-                        <a href="/pc/rvw/review?wid1=gnb_review" target="_self">리뷰</a>
-                    </li>
-                    <li>
-                        <a href="/pc/event/eventMain?wid1=gnb_event" target="_self">공지사항</a>
-                    </li>
-                    <li>
-                        <a href="/pc/my/myMain?wid1=gnb_my" target="_self">MY프레시킷</a>
-                    </li>
-
-                </ul>
-
-                <div class="my_gmenu">
-                    <ul>
-                        <li class="g_od">
-                            <a href="/pc/order/cartList?wid1=gnb_cart">
-
-                                <span class="txt">장바구니</span>
-                            </a>
-                        </li>
-                        <li class="g_mu">
-                            <a href="/pc/menu/searchList?wid1=gnb_search_menu"></a>
-                            <span class="txt">메뉴찾기</span>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
+    
     <style>
         #footer {
             clear: both;
@@ -125,16 +68,6 @@
             height: 100px;
         }
 
-
-
-
-
-
-
-
-
-
-
         li {
             list-style: none;
         }
@@ -143,12 +76,6 @@
             color: inherit;
             text-decoration: none;
         }
-
-
-
-
-
-
 
         .txt_wrap {
             font-family: "맑은고딕";
@@ -168,7 +95,7 @@
         /*==========================table============================================*/
         #cart_table {
 
-            margin: 30px 0 50px 50px;
+            margin: 0 0 50px 50px;
             width: 960px;
             text-align: left;
 
@@ -338,16 +265,85 @@
             font-size: 35px;
         }
         /*==========================다른============================================*/
-
+		
+		#cart_pno {
+			display: none;
+		}
 
        
     </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="../js/httpRequest.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
 
 
-    <body>
+</head>
+
+<body>
+
+    <!-- header -->
+    <header id="head">
+        <div class="gnb_wrap">
+            <div class="gnb_util">
+                <div class="util_wrap">
+                    <ul>
+                        <li><a href="https://www.cjone.com/cjmweb/join.do?coopco_cd=7060&amp;brnd_cd=6130&amp;mcht_no=6130&amp;etc1=PC&amp;etc2=ckgs"
+                                target="_blank">회원가입</a></li>
+                        <li><a href="javascript:cj.login(null, null, null, 'gnb_login');">로그인</a></li>
+                        <li><a href="/pc/cs/csMain?wid1=gnb_cs">고객센터</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="gnb_menu">
+                <h1 class="logo"><a href="header.html"><span class="hide">freshkit</span></a></h1>
+
+                <ul class="list_gmenu">
+
+                    <li>
+                        <a href="/pc/cn/cookitIntro?wid1=gnb_intro" target="_self">FRESH KIT 소개</a>
+                    </li>
+                    <li>
+                        <a href="menu.jsp" target="_self">FRESH KIT 메뉴</a>
+                    </li>
+                    <li>
+                        <a href="/pc/rvw/review?wid1=gnb_review" target="_self">리뷰</a>
+                    </li>
+                    <li>
+                        <a href="/pc/event/eventMain?wid1=gnb_event" target="_self">공지사항</a>
+                    </li>
+                    <li>
+                        <a href="/pc/my/myMain?wid1=gnb_my" target="_self">MY프레시킷</a>
+                    </li>
+
+                </ul>
+
+                <div class="my_gmenu">
+                    <ul>
+                        <li class="g_od">
+                            <a href="/pc/order/cartList?wid1=gnb_cart">
+
+                                <span class="txt">장바구니</span>
+                            </a>
+                        </li>
+                        <li class="g_mu">
+                            <a href="/pc/menu/searchList?wid1=gnb_search_menu"></a>
+                            <span class="txt">메뉴찾기</span>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- CSS only -->
+
+
+
+
+	
         <section id="container">
             <div id="content" class="pd_wrap pd_mu_wrap">
-
+			<form action="" name="frm">
                 <div class="olki_list_wrap">
                     <!--inner단-->
 
@@ -361,41 +357,42 @@
                     <div class="product_sub_sec2">
                         <div class="container text-center">
                             <div class="delete_button">
-                                <button type="button" class="btn btn-outline-secondary">선택 삭제</button>
-                                <button type="button" class="btn btn-outline-secondary">전체 삭제</button>
+                                <button type="button" class="btn btn-outline-secondary" id="selDelete">선택 삭제</button>
+                                <button type="button" class="btn btn-outline-secondary" id="allDelete">전체 삭제</button>
+                                <%-- <input type="text" name="no" id="" value="<%= %>" /> 고객번호 전송용 --%>
                             </div>
                             <table class="table table-borderless" id="cart_table">
                                 <thead>
-                                    <tr>
-                                        <th rowspan="2"><input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckDefault" checked></th>
-                                        <th colspan="2" class="pro_count_all">총 n/n개</th>
-
-                                    </tr>
                                 </thead>
                                 <tbody class="table-group-divider">
-                                <%
+                               <%
 									request.setCharacterEncoding("UTF-8");
 									response.setContentType("text/html;charset=UTF-8");
 									
 									int no = 1; // 임시 고객번호
-
+	
 									FkcartDAO dao = new FkcartDAO();
-                                										
+                                								
 									ArrayList<FkcartVO> list = dao.selectAll2(no);
-									
 									FkproductDAO dao2 = new FkproductDAO();
 									FkproductVO vo2 = null;
+									int cnt = 1000;
+									 // 임시 갯수
 									
-									int cnt = 2; // 임시 갯수
-									
+									FkcartDAO daosum = new FkcartDAO();
+
 									for(FkcartVO vo : list){
-										vo2 = dao2.selectOne(vo.getPno());
+										cnt++;
+										
+										vo2 = dao2.selectOne2(vo.getPno());
+										
+										System.out.println(vo2.getPno());							
 								%>
+								
                                     <tr class="table_null"></tr>
                                     <tr>
                                         <td rowspan="2" class="check_pro"><input class="form-check-input"
-                                                type="checkbox" value="" id="flexCheckDefault" checked></td>
+                                                type="checkbox" name="pno" value="<%=vo2.getPno() %>" id="check<%=cnt%>"></td>
                                         <td rowspan="2" class="img_pro">
                                         <img
                                                 src="<%=vo2.getPimg1() %>"
@@ -403,31 +400,31 @@
                                         <td class="price_left_pname"><%=vo2.getPname() %></td>
                                         <td rowspan="2" class="pro_count_text">
 
-
+                                        <!-- 장바구니 수량 변경 -->
                                             <input type="text" class="form-control count_pro_btn"
-                                                id="cart_pcount" value="<%=cnt%>">
+                                                id="cart_pcount<%=vo2.getPno() %>" value="1">                                         
 
                                         </td>
                                         <td rowspan="2">
                                             <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                <button type="button" id="minus_count" class="btn btn-outline-dark" onclick="minuscount()">-</button>
-                                                <button type="button" id="plus_count" class="btn btn-outline-dark" onclick="pluscount()">+</button>
+                                                <button type="button" id="minus_count<%=vo2.getPno() %>" class="btn btn-outline-dark" onclick="minuscount<%=vo2.getPno()%>()">-</button>
+                                                <button type="button" id="plus_count<%=vo2.getPno() %>" class="btn btn-outline-dark" onclick="pluscount<%=vo2.getPno()%>()">+</button>
 
                                             </div>
                                         </td>
-                                        <td rowspan="2" class="pro_count_payment"><%=cnt * (Math.round(vo2.getPrice() * (1 - vo2.getDcratio() * 0.01)))%> %></td>
+                                        <td rowspan="2" class="pro_count_payment"><input type="hidden" id="pprice<%=cnt %>" value="<%=(Math.round(vo2.getPrice() * (1 - vo2.getDcratio() * 0.01)))%>"/><input type="text" name="pprice" id="pprice<%=vo2.getPno() %>" style="width:70px;height:30px;" readonly value="<%=(Math.round(vo2.getPrice() * (1 - vo2.getDcratio() * 0.01)))%>"/></td>
                                     </tr>
 
                                     <tr>
 
-                                        <td class="price_left_price">15,900</td>
+                                        <td class="price_left_price"><%=vo2.getPrice() %></td>
 
                                     </tr>
                                     <tr class="table_null"></tr>
                                 
                                 <%
-									}
-		%>
+										}								
+								%>
 <!-- =============================== =============================================================================================-->
                                     
                                 </tbody>
@@ -447,7 +444,7 @@
 
                                     <tbody>
                                         <tr class="big_table_th">
-
+										
                                             <td>총 상품금액</td>
                                             <td rowspan="2" class="plus">-</td>
                                             <td>총 할인금액</td>
@@ -457,14 +454,16 @@
                                             <td>총 결제예정금액</td>
 
                                         </tr>
+
+
                                         <tr class="big_table_price">
-                                            <td>62,000원</td>
+                                            <td><input type="text" name="" id="sum2" value="" style="width:180px;height:50px;"/>원<input type="hidden" name="" id="sum22" value=""/></td>
+
+                                            <td><input type="text" name="" id="dc" style="width:180px;height:50px;" /></td>
 
                                             <td>0원</td>
 
-                                            <td>0원</td>
-
-                                            <td class="big_price_red">18,900원</td>
+                                            <td class="big_price_red"><input type="text" name="" id="sum3" style="width:180px;height:50px;"/></td>
                                         </tr>
 
                                     </tbody>
@@ -484,7 +483,7 @@
                                 </button>
 
                                 <button type="button" class="btn btn-success btn-lg">
-                                    전체주문하기</button>
+                                    전체주문하기
                                 </button>
 
                             </div>
@@ -497,9 +496,11 @@
 
 
                 </div>
+                </form>
 
                 <!--inner단-->
             </div>
+            
         </section>
         <footer id="footer">
 
@@ -548,8 +549,125 @@
                 </div>
             </div>
         </footer>
+        
     </body>
+<script type="text/javascript">
 
+$(function(){
+	$(".form-check-input").prop("checked", true);
+	
+	$("#allDelete").on("click", function(){
+				
+		var frm = document.frm;
+
+		document.frm.action="cartAllDelete.jsp";
+		document.frm.method="get";
+		document.frm.submit();		
+	})	
+	$("#selDelete").on("click", function(){
+
+		var frm = document.frm;
+		var pno_chk = $(".form-check-input");
+		
+		if(pno_chk.is(":checked")==false){
+			return false;
+		}else{
+		
+		document.frm.action="cartSelDelete.jsp";
+		document.frm.method="get";
+		document.frm.submit();		
+		}
+	})
+	
+
+	
+})	
+
+
+	var sum = 0;
+	var sum55 = 0;
+
+	<%
+		int cnt2 = 1000;
+	
+		for(FkcartVO vo : list){
+			cnt2++;
+			vo2 = dao2.selectOne2(vo.getPno());
+	%>	
+	
+	function minuscount<%=vo2.getPno()%>(){
+		cart_pcount<%=vo2.getPno()%>.value--;		
+
+		if(cart_pcount<%=vo2.getPno()%>.value<1){
+			cart_pcount<%=vo2.getPno()%>.value=1;
+		}		
+			pprice<%=vo2.getPno()%>.value = pprice<%=cnt2%>.value * cart_pcount<%=vo2.getPno()%>.value;			
+			
+		var checked = $("#check<%=cnt2%>").is(":checked");
+			
+		if(checked){
+			if(parseInt(sum22.value)<parseInt(sum2.value)){
+					sum -= parseInt(pprice<%=cnt2%>.value);		
+			}				
+		}else{
+			cart_pcount<%=vo2.getPno()%>.value=0;
+
+		}		
+	}	
+	function pluscount<%=vo2.getPno()%>(){
+		cart_pcount<%=vo2.getPno()%>.value++;
+		pprice<%=vo2.getPno()%>.value = pprice<%=cnt2%>.value * cart_pcount<%=vo2.getPno()%>.value;		
+		
+		var checked = $("#check<%=cnt2%>").is(":checked");
+		
+		if(checked){
+			sum += parseInt(pprice<%=cnt2%>.value);			
+		}else
+			cart_pcount<%=vo2.getPno()%>.value=0;
+	}	
+	
+	$("#check<%=cnt2%>").on("change",function(){
+		if($("#check<%=cnt2%>").is(":checked")){
+			console.log("체크")
+			sum2.value = parseInt(sum2.value)+parseInt(pprice<%=cnt2%>.value);
+			cart_pcount<%=vo2.getPno()%>.value = 1;
+			pprice<%=vo2.getPno()%>.value = pprice<%=cnt2%>.value * cart_pcount<%=vo2.getPno()%>.value;
+		}else{
+			console.log("해제");
+			sum2.value = parseInt(sum2.value)-parseInt(pprice<%=vo2.getPno()%>.value);
+			cart_pcount<%=vo2.getPno()%>.value = 0;
+			pprice<%=vo2.getPno()%>.value = 0;
+		}
+	})	
+
+	sum += parseInt(pprice<%=vo2.getPno()%>.value);
+	sum55 += parseInt(pprice<%=vo2.getPno()%>.value);
+	
+	$("button#minus_count<%=vo2.getPno()%>").on("click",function(){
+		
+		var checked = $("#check<%=cnt2%>").is(":checked");
+		
+		if(checked){
+		sum2.value = sum;
+			
+		}
+	})
+	$("button#plus_count<%=vo2.getPno()%>").on("click",function(){
+		
+		var checked = $("#check<%=cnt2%>").is(":checked");
+		
+		if(checked){
+		sum2.value = sum;
+		}
+	})
+
+<%
+		}
+%>
+		sum22.value = sum55;
+		sum2.value = sum;
+
+</script>
 
 
     </html>
