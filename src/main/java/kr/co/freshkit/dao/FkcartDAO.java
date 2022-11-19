@@ -91,6 +91,78 @@ public ArrayList<FkcartVO> selectAll2(int no){
 	return list;
 }//selectAll()end
 
+public ArrayList<FkcartVO> selectAll3(int no,int pno){
+	
+	sb.setLength(0);
+	sb.append("SELECT sum(pcount) FROM fkcart ");
+	sb.append("where no = ? and pno = ?");
+	ArrayList <FkcartVO> list = new ArrayList<FkcartVO>();
+	
+	
+	try {
+		//5.문장객체생성
+		pstmt = conn.prepareStatement(sb.toString());
+
+		pstmt.setInt(1, no);
+		pstmt.setInt(2, pno);
+		//6.실행
+		rs = pstmt.executeQuery();
+
+		//7.레코드별 로직처리
+		while (rs.next()) {
+			int cno = rs.getInt("cno");
+			int pcount = rs.getInt("sum(pcount)");
+			
+			
+			FkcartVO vo = new FkcartVO(cno, pcount, pno, no);
+			list.add(vo);
+			 
+			
+			
+
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return list;
+	}
+	
+//
+public FkcartVO selectOne2(int no,int pno) {
+	sb.setLength(0);
+	sb.append("SELECT * FROM fkcart ");
+	sb.append("where no = ? and pno = ? ");
+	
+	FkcartVO vo = null;
+	
+	try {
+		//5.문장객체생성
+		pstmt = conn.prepareStatement(sb.toString());
+
+		pstmt.setInt(1, no);
+		pstmt.setInt(2, pno);
+
+		//6.실행
+		rs = pstmt.executeQuery();
+
+		//7.레코드별 로직처리
+		while (rs.next()) {
+			
+			int pcount = rs.getInt("pcount");
+			int cno = rs.getInt("cno");
+			
+
+			vo = new FkcartVO(cno, pcount, pno, no);
+
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return vo;
+
+}
+
+
 public FkcartVO selectOne(int cno) {
 	sb.setLength(0);
 	sb.append("SELECT * FROM fkcart ");
@@ -167,6 +239,29 @@ public void modifyOne(FkcartVO vo) {
 		e.printStackTrace();
 	}		
 }
+// 장바구니 전체 삭제
+public void deleteAll(int no) {
+	
+	sb.setLength(0);
+	sb.append("DELETE FROM fkcart ");
+	sb.append("WHERE no=? ");
+	
+	// 5.문장객체생성
+	try {
+		pstmt = conn.prepareStatement(sb.toString());
+
+		pstmt.setInt(1, no);
+
+		// 6.실행(select ==> ResultSet)
+		pstmt.executeUpdate();
+
+		// 7.레코드별 로직처리
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+
+}
+
 public void deleteOne(int cno) {
 	
 	sb.setLength(0);
@@ -178,6 +273,30 @@ public void deleteOne(int cno) {
 		pstmt = conn.prepareStatement(sb.toString());
 
 		pstmt.setInt(1, cno);
+
+		// 6.실행(select ==> ResultSet)
+		pstmt.executeUpdate();
+
+		// 7.레코드별 로직처리
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+
+}
+// 장바구니 삭제용
+public void deleteOne2(int pno,int no) {
+	
+	sb.setLength(0);
+	sb.append("DELETE FROM fkcart ");
+	sb.append("WHERE pno in(?) ");
+	sb.append("and no=? ");
+	
+	// 5.문장객체생성
+	try {
+		pstmt = conn.prepareStatement(sb.toString());
+
+		pstmt.setInt(1, pno);
+		pstmt.setInt(2, no);
 
 		// 6.실행(select ==> ResultSet)
 		pstmt.executeUpdate();

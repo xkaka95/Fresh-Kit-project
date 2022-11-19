@@ -20,8 +20,9 @@
 		
 		FkcartDAO dao = new FkcartDAO();
 		
-		dao.insertOne(pno, no);
+		
     //리다이렉트
+			dao.insertOne(pno, no);
     response.sendRedirect("fkviewcart.jsp");
     
     %>    
