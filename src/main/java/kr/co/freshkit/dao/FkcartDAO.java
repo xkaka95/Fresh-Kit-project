@@ -307,6 +307,29 @@ public void deleteOne2(int pno,int no) {
 	}
 
 }
+public void deleteOne3(int pno,int no) {
+	
+	sb.setLength(0);
+	sb.append("DELETE FROM fkcart ");
+	sb.append("WHERE pno NOT in(?) ");
+	sb.append("and no=? ");
+	
+	// 5.문장객체생성
+	try {
+		pstmt = conn.prepareStatement(sb.toString());
+		
+		pstmt.setInt(1, pno);
+		pstmt.setInt(2, no);
+		
+		// 6.실행(select ==> ResultSet)
+		pstmt.executeUpdate();
+		
+		// 7.레코드별 로직처리
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+}
 //자원반납
 		public void close() {
 			try {

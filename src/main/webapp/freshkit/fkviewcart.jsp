@@ -363,6 +363,12 @@
                             </div>
                             <table class="table table-borderless" id="cart_table">
                                 <thead>
+                                    <!-- <tr>
+                                        <th rowspan="2"><input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault" checked></th>
+                                        <th colspan="2" class="pro_count_all">전체선택</th>
+
+                                    </tr> -->
                                 </thead>
                                 <tbody class="table-group-divider">
                                <%
@@ -383,7 +389,6 @@
 
 									for(FkcartVO vo : list){
 										cnt++;
-										
 										vo2 = dao2.selectOne2(vo.getPno());
 										
 										System.out.println(vo2.getPno());							
@@ -392,7 +397,7 @@
                                     <tr class="table_null"></tr>
                                     <tr>
                                         <td rowspan="2" class="check_pro"><input class="form-check-input"
-                                                type="checkbox" name="pno" value="<%=vo2.getPno() %>" id="check<%=cnt%>"></td>
+                                                type="checkbox" name="pno" value="<%=vo2.getPno() %>" id="check<%=cnt%>" onClick="agreeCheck()"></td>
                                         <td rowspan="2" class="img_pro">
                                         <img
                                                 src="<%=vo2.getPimg1() %>"
@@ -402,22 +407,27 @@
 
                                         <!-- 장바구니 수량 변경 -->
                                             <input type="text" class="form-control count_pro_btn"
-                                                id="cart_pcount<%=vo2.getPno() %>" value="1">                                         
+                                                id="cart_pcount<%=vo2.getPno() %>" value="1">
+                                                <input type="hidden" class="form-control count_pro_btn2" name="" id="cart_pcount<%=cnt %>" value="1" />                                         
 
                                         </td>
                                         <td rowspan="2">
                                             <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                <button type="button" id="minus_count<%=vo2.getPno() %>" class="btn btn-outline-dark" onclick="minuscount<%=vo2.getPno()%>()">-</button>
-                                                <button type="button" id="plus_count<%=vo2.getPno() %>" class="btn btn-outline-dark" onclick="pluscount<%=vo2.getPno()%>()">+</button>
+                                                <button type="button" name="minus_count" id="minus_count<%=vo2.getPno() %>" class="btn btn-outline-dark" onclick="minuscount<%=vo2.getPno()%>()">-</button>
+                                                <button type="button" name="plus_count" id="plus_count<%=vo2.getPno() %>" class="btn btn-outline-dark" onclick="pluscount<%=vo2.getPno()%>()">+</button>
 
                                             </div>
                                         </td>
-                                        <td rowspan="2" class="pro_count_payment"><input type="hidden" id="pprice<%=cnt %>" value="<%=(Math.round(vo2.getPrice() * (1 - vo2.getDcratio() * 0.01)))%>"/><input type="text" name="pprice" id="pprice<%=vo2.getPno() %>" style="width:70px;height:30px;" readonly value="<%=(Math.round(vo2.getPrice() * (1 - vo2.getDcratio() * 0.01)))%>"/></td>
+                                        <script>
+                                    
+                                        </script>
+                                        <td rowspan="2" class="pro_count_payment"><input type="hidden" name="" id="pprice<%=cnt+1000 %>" value="<%=(Math.round(vo2.getPrice() * (1 - vo2.getDcratio() * 0.01)))%>"/><input type="hidden" id="pprice<%=cnt %>" value="<%=(Math.round(vo2.getPrice() * (1 - vo2.getDcratio() * 0.01)))%>"/>
+                                        <input type="text" name="pprice" id="pprice<%=vo2.getPno() %>" style="width:70px;height:30px;border:none;" readonly value="<%=(Math.round(vo2.getPrice() * (1 - vo2.getDcratio() * 0.01)))%>"/></td>
                                     </tr>
 
                                     <tr>
 
-                                        <td class="price_left_price"><%=vo2.getPrice() %></td>
+                                        <td class="price_left_price"><%=vo2.getPrice() %>원</td>
 
                                     </tr>
                                     <tr class="table_null"></tr>
@@ -446,24 +456,25 @@
                                         <tr class="big_table_th">
 										
                                             <td>총 상품금액</td>
-                                            <td rowspan="2" class="plus">-</td>
+                                            <td rowspan="2" class="plus" style="padding-top:42px">-</td>
                                             <td>총 할인금액</td>
-                                            <td rowspan="2" class="plus">+</td>
+                                            <td rowspan="2" class="plus" style="padding-top:42px">+</td>
                                             <td>총 배송비</td>
-                                            <td rowspan="2" class="plus">=</td>
+                                            <td rowspan="2" class="plus" style="padding-top:42px">=</td>
                                             <td>총 결제예정금액</td>
 
                                         </tr>
 
 
                                         <tr class="big_table_price">
-                                            <td><input type="text" name="" id="sum2" value="" style="width:180px;height:50px;"/>원<input type="hidden" name="" id="sum22" value=""/></td>
+                                            <td><input type="text" name="" id="sum2" value="" style="width:180px;height:50px;border:none;" readonly/>원<input type="hidden" name="" id="sum22" value=""/><input type="hidden" name="" id="sum222" /></td>
 
-                                            <td><input type="text" name="" id="dc" style="width:180px;height:50px;" /></td>
+                                            <td><input type="text" name="" id="dc" style="width:100px;height:50px;border:none;" value="0"/>원</td>
 
-                                            <td>0원</td>
+                                            <td><input type="text" name="" id="express" style="width:100px;height:50px;border:none;" value="0"/>원</td>
+                                            
+                                            <td class="big_price_red"><input type="text" name="finalSum" id="sum3" value="" style="width:180px;height:50px;color:red;border:none;"/>원</td>
 
-                                            <td class="big_price_red"><input type="text" name="" id="sum3" style="width:180px;height:50px;"/></td>
                                         </tr>
 
                                     </tbody>
@@ -478,11 +489,11 @@
                                     선물하기
                                 </button>
 
-                                <button type="button" class="btn btn-outline-dark btn-lg">
+                                <button type="button" class="btn btn-outline-dark btn-lg" id="selOrder">
                                     선택주문하기
                                 </button>
 
-                                <button type="button" class="btn btn-success btn-lg">
+                                <button type="button" class="btn btn-success btn-lg" id="allOrder">
                                     전체주문하기
                                 </button>
 
@@ -556,7 +567,24 @@
 $(function(){
 	$(".form-check-input").prop("checked", true);
 	
-	$("#allDelete").on("click", function(){
+	
+		
+		/* $("#flexCheckDefault").click(function(){ // 전체체크,해제
+			
+			var checked = $("#flexCheckDefault").is(":checked");
+			
+			if(checked){
+				$("input:checkbox").prop("checked",true);
+				sum2.value = sum222.value;
+			}else if(checked==false){
+				$("input:checkbox").prop("checked",false);
+				sum222.value = sum2.value;
+				sum2.value = 0;
+			}
+		}) */
+	
+	
+	$("#allDelete").on("click", function(){ // 장바구니 전체삭제
 				
 		var frm = document.frm;
 
@@ -564,7 +592,7 @@ $(function(){
 		document.frm.method="get";
 		document.frm.submit();		
 	})	
-	$("#selDelete").on("click", function(){
+	$("#selDelete").on("click", function(){ // 장바구니 선택삭제
 
 		var frm = document.frm;
 		var pno_chk = $(".form-check-input");
@@ -579,11 +607,29 @@ $(function(){
 		}
 	})
 	
+	$("#allOrder").on("click", function(){ // 전체주문하기
+				
+		var frm = document.frm;
 
-	
+		document.frm.action="allOrder.jsp";
+		document.frm.method="get";
+		document.frm.submit();		
+	})	
+	$("#selOrder").on("click", function(){ // 선택주문하기
+
+		var frm = document.frm;
+		var pno_chk = $(".form-check-input");
+		
+		if(pno_chk.is(":checked")==false){
+			return false;
+		}else{
+		
+		document.frm.action="selOrder.jsp";
+		document.frm.method="get";
+		document.frm.submit();		
+		}
+	})	
 })	
-
-
 	var sum = 0;
 	var sum55 = 0;
 
@@ -596,47 +642,58 @@ $(function(){
 	%>	
 	
 	function minuscount<%=vo2.getPno()%>(){
-		cart_pcount<%=vo2.getPno()%>.value--;		
+		cart_pcount<%=vo2.getPno()%>.value--;
+		cart_pcount<%=cnt2%>.value--;
 
 		if(cart_pcount<%=vo2.getPno()%>.value<1){
 			cart_pcount<%=vo2.getPno()%>.value=1;
+			cart_pcount<%=cnt2%>.value=1;
 		}		
-			pprice<%=vo2.getPno()%>.value = pprice<%=cnt2%>.value * cart_pcount<%=vo2.getPno()%>.value;			
+			pprice<%=vo2.getPno()%>.value = <%=vo2.getPrice()%> * cart_pcount<%=vo2.getPno()%>.value;			
+			pprice<%=cnt2+1000%>.value = pprice<%=cnt2%>.value * cart_pcount<%=vo2.getPno()%>.value;			
 			
 		var checked = $("#check<%=cnt2%>").is(":checked");
 			
 		if(checked){
 			if(parseInt(sum22.value)<parseInt(sum2.value)){
-					sum -= parseInt(pprice<%=cnt2%>.value);		
+					sum -= <%=vo2.getPrice()%>;		
 			}				
 		}else{
-			cart_pcount<%=vo2.getPno()%>.value=0;
+			cart_pcount<%=vo2.getPno()%>.value=1;
 
 		}		
 	}	
 	function pluscount<%=vo2.getPno()%>(){
 		cart_pcount<%=vo2.getPno()%>.value++;
-		pprice<%=vo2.getPno()%>.value = pprice<%=cnt2%>.value * cart_pcount<%=vo2.getPno()%>.value;		
+		cart_pcount<%=cnt2%>.value++;
 		
+		pprice<%=vo2.getPno()%>.value = <%=vo2.getPrice()%> * cart_pcount<%=vo2.getPno()%>.value;		
+		pprice<%=cnt2+1000%>.value = pprice<%=cnt2%>.value * cart_pcount<%=vo2.getPno()%>.value;			
+
 		var checked = $("#check<%=cnt2%>").is(":checked");
 		
 		if(checked){
-			sum += parseInt(pprice<%=cnt2%>.value);			
-		}else
-			cart_pcount<%=vo2.getPno()%>.value=0;
+			sum += <%=vo2.getPrice()%>;			
+		}else{
+			cart_pcount<%=vo2.getPno()%>.value=1;			
+		}
 	}	
 	
 	$("#check<%=cnt2%>").on("change",function(){
 		if($("#check<%=cnt2%>").is(":checked")){
 			console.log("체크")
-			sum2.value = parseInt(sum2.value)+parseInt(pprice<%=cnt2%>.value);
-			cart_pcount<%=vo2.getPno()%>.value = 1;
-			pprice<%=vo2.getPno()%>.value = pprice<%=cnt2%>.value * cart_pcount<%=vo2.getPno()%>.value;
+			sum2.value = parseInt(sum2.value)+parseInt(pprice<%=cnt2+1000%>.value);
+			sum3.value = parseInt(sum2.value);
+			cart_pcount<%=vo2.getPno()%>.value = cart_pcount<%=cnt2%>.value;
+			pprice<%=vo2.getPno()%>.value = <%=vo2.getPrice()%>*parseInt(cart_pcount<%=vo2.getPno()%>.value);
+
 		}else{
 			console.log("해제");
 			sum2.value = parseInt(sum2.value)-parseInt(pprice<%=vo2.getPno()%>.value);
-			cart_pcount<%=vo2.getPno()%>.value = 0;
+			sum3.value = parseInt(sum2.value);
+			cart_pcount<%=vo2.getPno()%>.value = 1;
 			pprice<%=vo2.getPno()%>.value = 0;
+
 		}
 	})	
 
@@ -649,15 +706,18 @@ $(function(){
 		
 		if(checked){
 		sum2.value = sum;
-			
+		sum3.value = parseInt(sum2.value);
 		}
 	})
 	$("button#plus_count<%=vo2.getPno()%>").on("click",function(){
+		
+		console.log($("[type=checkbox]:checked").length);
 		
 		var checked = $("#check<%=cnt2%>").is(":checked");
 		
 		if(checked){
 		sum2.value = sum;
+		sum3.value = parseInt(sum2.value);
 		}
 	})
 
@@ -666,7 +726,25 @@ $(function(){
 %>
 		sum22.value = sum55;
 		sum2.value = sum;
+		
+		sum3.value = parseInt(sum2.value);
 
+    	function agreeCheck(){
+
+			console.log("haha");
+			
+			var checked = $("#flexCheckDefault").is(":checked");
+			
+			
+			
+			if($(".form-check-input:checked").length!=<%=cnt2-1000%>){
+				$("button[class='btn btn-outline-dark']").attr("disabled",true);
+			}else if($(".form-check-input:checked").length==<%=cnt2-1000%>){
+				$("button[class='btn btn-outline-dark']").attr("disabled",false);
+			}
+    		
+    	}    
+		
 </script>
 
 
