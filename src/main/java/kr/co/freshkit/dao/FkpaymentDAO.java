@@ -12,10 +12,10 @@ import kr.co.freshkit.vo.FkdeliveryVO;
 import kr.co.freshkit.vo.FkpaymentVO;
 
 public class FkpaymentDAO {
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://freshkit.chfv6yulywaz.ap-northeast-2.rds.amazonaws.com:3306/semidb";
-	String user = "admin";
-	String password = "dkssud1234";
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+	String user = "scott";
+	String password = "tiger";
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	StringBuffer sb = new StringBuffer();
@@ -114,6 +114,24 @@ public class FkpaymentDAO {
 			pstmt.setString(4, vo.getPaymethod());
 			pstmt.setLong(5, vo.getOno());
 
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	// 주문결제생성용
+	public void insertOne2(int payamount, String paymethod, String ono) {
+		sb.setLength(0);
+		sb.append("INSERT INTO fkpayment ");
+		sb.append("VALUES (fkpayment_payno_seq.nextval, sysdate , ? , '결제완료' , ? , ? ) ");
+		
+		try {
+			pstmt = conn.prepareStatement(sb.toString());
+			pstmt.setInt(1, payamount);
+			pstmt.setString(2, paymethod);
+			pstmt.setString(3, ono);
+			
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -40,7 +40,7 @@
             <div class="my_gmenu">
                 <ul>
                     <li class="g_od">
-                        <a href="cart.html">
+                        <a href="fkviewcart.jsp">
                                                         
                             <span class="txt">장바구니</span>
                         </a>

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FkorderVO {
-	Long ono;
+	String ono;
 	Timestamp odate;
 	int pno;
 	int count;

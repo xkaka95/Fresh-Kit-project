@@ -81,6 +81,7 @@
 		}
 
 		footer {
+			clear: both;
 			height: 290px;
 			background-color: blanchedalmond;
 		}
@@ -113,7 +114,7 @@
 					request.setCharacterEncoding("UTF-8");
 					response.setContentType("text/html;charset=UTF-8");
 					
-					int no = 18;
+					int no = 1;
 					
 					FkorderDAO dao = new FkorderDAO();					
 					ArrayList<FkorderVO> list = dao.selectAll2(no);

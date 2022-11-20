@@ -51,7 +51,7 @@ public class FkorderDAO {
 
 			
 			while (rs.next()) {
-				Long ono = rs.getLong("ono");
+				String ono = rs.getString("ono");
 				Timestamp odate = rs.getTimestamp("odate");
 				int pno =  rs.getInt("pno");
 				int count =  rs.getInt("count");
@@ -89,7 +89,7 @@ public class FkorderDAO {
 
 			
 			while (rs.next()) {
-				Long ono = rs.getLong("ono");
+				String ono = rs.getString("ono");
 				Timestamp odate = rs.getTimestamp("odate");
 				int pno =  rs.getInt("pno");
 				int count =  rs.getInt("count");
@@ -112,7 +112,7 @@ public class FkorderDAO {
 
 	 
 
-	public FkorderVO selectOne(Long ono) {
+	public FkorderVO selectOne(String ono) {
 
 		sb.setLength(0);
 		sb.append("select odate,pno,count,oprice,ostatus,omessage,oaddress,opost,oname,ophone,no ");
@@ -124,7 +124,7 @@ public class FkorderDAO {
 			// 5.문장객체생성
 			pstmt = conn.prepareStatement(sb.toString());
 
-			pstmt.setLong(1, ono);
+			pstmt.setString(1, ono);
 
 			// 6.실행
 			rs = pstmt.executeQuery();
@@ -165,7 +165,7 @@ public class FkorderDAO {
 			// 5.문장객체생성
 			pstmt = conn.prepareStatement(sb.toString());
 
-			pstmt.setLong(1, vo.getOno());
+			pstmt.setString(1, vo.getOno());
 			pstmt.setTimestamp(2, vo.getOdate());
 			pstmt.setInt(3, vo.getPno());
 			pstmt.setInt(4, vo.getCount());
@@ -180,6 +180,36 @@ public class FkorderDAO {
 			// 6.실행
 			pstmt.executeUpdate();
 
+			// 7.레코드별 로직처리
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	// 직접 입력
+	public void insertOne2(String ono, int pno, int count, int oprice, String omessage, String oaddress, String opost, String oname, String ophone, int no) {
+		// 4.sql문 작성
+		sb.setLength(0);
+		sb.append("INSERT INTO fkorder ");
+		sb.append("VALUES (?,sysdate,?,?,?,'입금확인',?,?,?,?,?,?) ");
+		
+		try {
+			// 5.문장객체생성
+			pstmt = conn.prepareStatement(sb.toString());
+			
+			pstmt.setString(1, ono);
+			pstmt.setInt(2, pno);
+			pstmt.setInt(3, count);
+			pstmt.setInt(4, oprice);
+			pstmt.setString(5, omessage);
+			pstmt.setString(6, oaddress);
+			pstmt.setString(7, opost);
+			pstmt.setString(8, oname);
+			pstmt.setString(9, ophone);
+			pstmt.setInt(10, no);
+
+			// 6.실행
+			pstmt.executeUpdate();
+			
 			// 7.레코드별 로직처리
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -208,7 +238,7 @@ public class FkorderDAO {
 			pstmt.setString(9, vo.getOname());
 			pstmt.setString(10, vo.getOphone());
 			pstmt.setInt(11, vo.getNo());
-			pstmt.setLong(12, vo.getOno());
+			pstmt.setString(12, vo.getOno());
 			// 6.실행(select ==> ResultSet)
 			pstmt.executeUpdate();
 
