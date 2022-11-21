@@ -34,12 +34,12 @@ public class FkcustomerDAO {
 		}		
 	}// constructor end
 	
-	public boolean idCheck(String id) {
-		
+	public int idCheck(String id) {
+		int ick = -1;
 		sb.setLength(0);
 		sb.append("select id from fkcustomer ");
 		sb.append("where id = ? ");
-		boolean isOk = false;
+		
 		
 		try {
 			
@@ -47,7 +47,11 @@ public class FkcustomerDAO {
 			pstmt.setString(1, id);
 						
 			rs = pstmt.executeQuery();
-			isOk=rs.next();	
+			if(rs.next()) {
+			ick = 1; //이미 있는 아이디	
+			}else {
+				ick = 0;//사용 가능한 아이디
+			}
 						
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -55,7 +59,7 @@ public class FkcustomerDAO {
 		} finally {
 			close();
 		}
-		return isOk; 
+		return ick; 
 		
 		
 	}//아이디 중복 메서드 끝
@@ -145,6 +149,58 @@ public class FkcustomerDAO {
 		}
 		
 		return vo;
+		
+	}
+	public String findByPw(String name,String id,String phone) {
+		String fkpw = null;
+		sb.setLength(0);
+		sb.append("select pw from fkcustomer " );
+		sb.append("where name = ? " );
+		sb.append("and id = ? " );
+		sb.append("and phone = ? " );
+		
+		try {
+			pstmt = conn.prepareStatement(sb.toString());
+			pstmt.setString(1, name);
+			pstmt.setString(2, id);
+			pstmt.setString(3, phone);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				fkpw=rs.getString("pw");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return fkpw;
+		
+	}
+	public void pwRevise(String pw, String id) {
+		
+		sb.setLength(0);
+		sb.append("update fkcustomer ");
+		sb.append("set pw=? ");
+		sb.append("where id=? ");
+		
+				
+		try {
+			pstmt = conn.prepareStatement(sb.toString());
+			pstmt.setString(1, pw);
+			pstmt.setString(2, id);
+			
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
 		
 	}
 	// 회원탈퇴용
@@ -259,9 +315,11 @@ public class FkcustomerDAO {
 	
 	//회원가입
 	public void insertOne(FkcustomerVO vo) {
+			
+		
 			sb.setLength(0);
 			sb.append("insert into fkcustomer ");
-			sb.append("values (null,?,?,?,?,?,?,?,?,?) ");
+			sb.append("values (fkcustomer_no_seq.NEXTVAL,?,?,?,?,?,?,?,?,?) ");
 		
 			
 			try {
@@ -286,7 +344,7 @@ public class FkcustomerDAO {
 				close();
 			}
 			
-			
+		  
 		}
 		
 		
@@ -385,6 +443,46 @@ public class FkcustomerDAO {
 			System.out.println("삭제 실패");
 			e.printStackTrace();
 		}	
+		
+	}
+	public FkcustomerVO isExists(String id,String pw) {
+		
+		sb.setLength(0);
+		sb.append("select no, grade, id, pw, name, gender, email, post, address, phone ");
+		sb.append("from fkcustomer ");
+		sb.append("where id = ? ");
+		sb.append("and pw = ? ");
+		FkcustomerVO vo = null;
+		
+		
+		try {
+			//5.문장객체
+			pstmt=conn.prepareStatement(sb.toString());
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			
+			rs = pstmt.executeQuery();
+					
+			if(rs.next()){
+				//로그인성공
+				int no = rs.getInt("no");
+				String grade = rs.getString("grade");
+				String name = rs.getString("name");
+				String gender = rs.getString("gender");
+				String email = rs.getString("email");
+				String post = rs.getString("post");
+				String address = rs.getString("address");
+				String phone = rs.getString("phone");
+				vo  = new FkcustomerVO(no, grade, id, pw, name, gender, email, post, address, phone);
+			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return vo; //
 		
 	}
 	public void close() {
