@@ -36,7 +36,7 @@
                 </li>
 
             </ul>
-
+				<input type="hidden" name="no" />
             <div class="my_gmenu">
                 <ul>
                     <li class="g_od">

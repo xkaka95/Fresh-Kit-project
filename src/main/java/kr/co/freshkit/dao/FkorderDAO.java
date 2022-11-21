@@ -250,7 +250,7 @@ public class FkorderDAO {
 	}
 	// 삭제
 
-	public void deleteOne(Long ono) {
+	public void deleteOne(String ono) {
 		// 4.SQL문 작성
 		sb.setLength(0);
 		sb.append("DELETE FROM fkorder ");
@@ -260,7 +260,7 @@ public class FkorderDAO {
 		try {
 			pstmt = conn.prepareStatement(sb.toString());
 
-			pstmt.setLong(1, ono);
+			pstmt.setString(1, ono);
 
 			// 6.실행(select ==> ResultSet)
 			pstmt.executeUpdate();

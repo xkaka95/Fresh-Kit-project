@@ -1,3 +1,5 @@
+<%@page import="javax.swing.JOptionPane"%>
+<%@page import="java.io.PrintWriter"%>
 <%@page import="kr.co.freshkit.vo.FkproductVO"%>
 <%@page import="kr.co.freshkit.dao.FkproductDAO"%>
 <%@page import="kr.co.freshkit.dao.FkcartDAO"%>
@@ -5,7 +7,15 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@page import="kr.co.freshkit.dao.FkorderDAO"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
     <%
     
 		request.setCharacterEncoding("UTF-8");
@@ -16,16 +26,30 @@
 		
 		out.println(pno);
 		
-		int no = 1; // 임시고객번호
+		int no = 1; // 임시고객번호	
 		
 		FkcartDAO dao = new FkcartDAO();
 		
+		if(dao.cartCheck(pno, no)==true){
+			
+		out.println("<script language='javascript'>");
+		out.println("alert('장바구니에 있는 물품입니다.')");
+		out.println("</script>");
+		out.flush();
+
+		}else{
+			dao.insertOne(pno, no);			
+		}
+		
 		
     //리다이렉트
-			dao.insertOne(pno, no);
-    response.sendRedirect("fkviewcart.jsp");
+    	
     
-    %>    
-    
-    
+    %>   
+    <script>
+    	location.href="fkviewcart.jsp";    
+    </script> 
+    	
+</body>
+</html>
     

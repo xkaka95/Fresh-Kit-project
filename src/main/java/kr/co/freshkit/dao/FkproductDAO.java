@@ -100,6 +100,40 @@ public class FkproductDAO {
 		return list;
 		
 	}
+	public ArrayList<FkproductVO> selectAll2(int hsno){
+		
+		ArrayList<FkproductVO> list = new ArrayList<FkproductVO>();
+		sb.setLength(0);
+		sb.append("select * from fkproduct ");
+		sb.append("where hsno = ? ");
+		try {
+			pstmt = conn.prepareStatement(sb.toString());
+			pstmt.setInt(1, hsno);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				int pno = rs.getInt("pno");
+				String pname=rs.getString("pname");
+				int price=rs.getInt("price");
+				String pimg1=rs.getString("pimg1");
+				String pimg2=rs.getString("pimg2");
+				String pimg3=rs.getString("pimg3");
+				String pimg4=rs.getString("pimg4");
+				int dcratio=rs.getInt("dcratio");
+				String pexplain=rs.getString("pexplain");
+				
+				
+				FkproductVO vo=new FkproductVO(pno,pname,price,pimg1,pimg2,pimg3,pimg4,dcratio,pexplain,hsno);
+			
+				list.add(vo);
+			}
+			} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+		
+	}
 	
 	//1건조회
 	public FkproductVO selectOne(int pno) {

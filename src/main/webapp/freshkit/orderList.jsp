@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="kr.co.freshkit.vo.FkproductVO"%>
 <%@page import="kr.co.freshkit.dao.FkproductDAO"%>
@@ -19,15 +20,17 @@
 		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap');
 
 		body {
-			height: 1015px;
+			height: 1095px;
 		}
 
 		#side1 {
 			background-color: #d9e2ae;
 			width: 300px;
-			height: 1200px;
+			height: 100%;
+			min-height: 1500px;
 			float: left;
 			font-family: 'Noto Sans KR', sans-serif;
+			clear: both;
 		}
 		#side1>p {
 			padding-bottom: 10px;
@@ -64,13 +67,13 @@
 		a:hover, a:active { text-decoration: none; }
 
         table {
-            width: 1200px;
+            width: 100%;
             max-width: 1280px;
             min-width: 1280px;
 			position: absolute;
 			text-align: center;
 			top: 300px;
-            left: 400px;
+            left: 350px;
         }
 		td>img {
 			width: 150px;
@@ -89,19 +92,46 @@
 			height: 100%;
             padding-bottom: 300px;
         }
+        div#table1 {
+        	max-height : 1000px;
+        	overflow: auto;
+        }
 	</style>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script type="text/javascript">
 
+	$(function(){
+		$("button#ono").on("click", function(){
+			
+			var frm = document.frm;
+			
+			var result = confirm("주문을 취소하시겠습니까?");
+			
+			if(result){
+				document.frm.action="orderDelete.jsp";
+				document.frm.method="get";
+				document.frm.submit();				
+			}else{
+				false;
+			}
+
+
+		})
+	})
+</script>
 <body>
 	<jsp:include page="header.jsp"/>	
 	
+	<form action="" name="frm">
 	<div id="container">
 		<jsp:include page="sidebar1.jsp"/>
 
 		<div id="contents">
             <br><br>
 			<p id="p2">주문목록/배송조회</p>
-            <table style="width: 70%;" id="container" class="table align-middle">
+			<div id="table1">
+            <table style="width: 70%; overflow-auto" id="container" class="table align-middle">
 				<tr class="table-light">
 					<th>상품이미지</th>
 					<th>상품명</th>
@@ -109,10 +139,13 @@
 					<th>주문번호</th>
 					<th>주문금액(수량)</th>
 					<th>주문상태</th>
+					<th></th>
 				</tr>
 				<%
 					request.setCharacterEncoding("UTF-8");
 					response.setContentType("text/html;charset=UTF-8");
+					
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 					
 					int no = 1;
 					
@@ -128,18 +161,21 @@
 				<tr>
 					<td><img src="<%=vo2.getPimg1()%>" alt=""></td>
 					<td><a href="fkproductDetail.jsp?pno=<%=vo2.getPno()%>"><%=vo2.getPname()%></a></td>
-					<td><%=vo.getOdate()%></td>
+					<td><%=sdf.format(vo.getOdate())%></td>
 					<td><%=vo.getOno() %></td>
-					<td><%=vo.getOprice() %>(<%=vo.getCount() %>)</td>
+					<td><%=vo.getOprice() %>원(<%=vo.getCount() %>set)</td>
 					<td><%=vo.getOstatus() %></td>
+					<td><button type="submit" id="ono" name="ono" class="btn btn-outline-dark btn-sm" value="<%=vo.getOno() %>" style="width:80px;">주문취소</button></td>
 				</tr>
 				<%
 					}
 				%>
             </table>
+            </div>
 		</div>
 
 	</div>
+	</form>
 		
 	<jsp:include page="footer.jsp"/>
 	

@@ -196,6 +196,33 @@ public FkcartVO selectOne(int cno) {
 	return vo;
 
 }
+public boolean cartCheck(int pno, int no) {
+	
+	sb.setLength(0);
+	sb.append("select * from fkcart ");
+	sb.append("where pno = ? ");
+	sb.append("and no = ? ");
+	boolean isOk = false;
+	
+	try {
+		
+		pstmt=conn.prepareStatement(sb.toString());
+		pstmt.setInt(1, pno);
+		pstmt.setInt(2, no);
+					
+		rs = pstmt.executeQuery();
+		isOk=rs.next();	
+					
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return isOk; 
+	
+	
+}//카트 중복 메서드 끝
+
 public void insertOne(int pno, int no) {
 	sb.setLength(0);
 	sb.append("INSERT INTO fkcart ");
