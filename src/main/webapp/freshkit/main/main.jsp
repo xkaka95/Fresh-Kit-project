@@ -243,28 +243,28 @@
 						<div>
 							<label for="slide04" class="left"></label>
 							<label for="slide02" class="right"></label>
-							<a href=""><img class="slide1" src="../P_img/main3.png"></a>
+							<a href="../menu/menu.jsp"><img class="slide1" src="../P_img/main3.png"></a>
 						</div>
 					</li>
 					<li class="slideitem">
 						<div>
 							<label for="slide01" class="left"></label>
 							<label for="slide03" class="right"></label>
-							<a><img class="slide1" src="../P_img/main1.png"></a>
+							<a href="../menu/200.jsp"><img class="slide1" src="../P_img/main1.png"></a>
 						</div>
 					</li>
 					<li class="slideitem">
 						<div>
 							<label for="slide02" class="left"></label>
 							<label for="slide04" class="right"></label>
-							<a><img class="slide1" src="../P_img/main4.png"></a>
+							<a href="../cs/fknotice.jsp"><img class="slide1" src="../P_img/main4.png"></a>
 						</div>
 					</li>
 					<li class="slideitem">
 						<div>
 							<label for="slide03" class="left"></label>
 							<label for="slide01" class="right"></label>
-							<a><img class="slide1" src="../P_img/main2.png"></a>
+							<a href="../cs/fkcs.jsp"><img class="slide1" src="../P_img/main2.png"></a>
 						</div>
 					</li>
 				</ul>
@@ -322,9 +322,9 @@
             		
                     %>
                     <tr>
-                        <td><a href="../project/orderList.jsp"><img src="<%= vo.getPimg1() %>" alt=""></a></td>
-                        <td><a href="../project/orderList.jsp"><img src="<%= vo2.getPimg1() %>" alt=""></a></td>
-                        <td><a href="../project/orderList.jsp"><img src="<%= vo3.getPimg1() %>" alt=""></a></td>
+                        <td><a href="../menu/fkproductDetail.jsp?pno=<%=vo.getPno()%>"><img src="<%= vo.getPimg1() %>" alt=""></a></td>
+                        <td><a href="../menu/fkproductDetail.jsp?pno=<%=vo2.getPno()%>"><img src="<%= vo2.getPimg1() %>" alt=""></a></td>
+                        <td><a href="../menu/fkproductDetail.jsp?pno=<%=vo3.getPno()%>"><img src="<%= vo3.getPimg1() %>" alt=""></a></td>
                     </tr>
                     <tr>
                         <td><p><%=theme %></p><p class="fs-5 fw-bold"><%= vo.getPname() %></p><p><%= vo.getPrice() %>원</p></td>
@@ -332,9 +332,9 @@
                         <td><p><%=theme %></p><p class="fs-5 fw-bold"><%= vo3.getPname() %></p><p><%= vo3.getPrice() %>원</p></td>
                     </tr>
                     <tr>
-                        <td><a href="../project/orderList.jsp"><img src="<%= vo4.getPimg1() %>" alt=""></a></td>
-                        <td><a href="../project/orderList.jsp"><img src="<%= vo5.getPimg1() %>" alt=""></a></td>
-                        <td><a href="../project/orderList.jsp"><img src="<%= vo6.getPimg1() %>" alt=""></a></td>
+                        <td><a href="../menu/fkproductDetail.jsp?pno=<%=vo4.getPno()%>"><img src="<%= vo4.getPimg1() %>" alt=""></a></td>
+                        <td><a href="../menu/fkproductDetail.jsp?pno=<%=vo5.getPno()%>"><img src="<%= vo5.getPimg1() %>" alt=""></a></td>
+                        <td><a href="../menu/fkproductDetail.jsp?pno=<%=vo6.getPno()%>"><img src="<%= vo6.getPimg1() %>" alt=""></a></td>
                     </tr>
                     <tr>
                         <td><p><%=theme %></p><p class="fs-5 fw-bold"><%= vo4.getPname() %></p><p><%= vo4.getPrice() %>원</p></td>

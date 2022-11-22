@@ -30,9 +30,7 @@
 	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap')
 	;
 
-.cs_wrap {
-	margin-bottom: 100px;
-}
+
 
 .title {
 	margin-left: 300px;

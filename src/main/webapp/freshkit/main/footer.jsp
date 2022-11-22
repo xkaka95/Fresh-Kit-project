@@ -9,7 +9,7 @@
         <div class="footer_wrap">
             <div class="footer_cont">
                 <div class="fl_l">
-                    <div class="logo"><img src="../images/mainlogo.png" alt=""></div>
+                    <div class="logo"><img src="../images/mainlogo_footer.png" alt=""></div>
                 </div>
                 <div class="fl_c">
                     <div class="menu">

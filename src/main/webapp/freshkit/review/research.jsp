@@ -1,6 +1,5 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
-<%@page import="com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="kr.co.freshkit.vo.FkreviewVO"%>
 <%@page import="java.util.ArrayList"%>

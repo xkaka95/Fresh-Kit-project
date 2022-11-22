@@ -33,7 +33,7 @@
 		int no = 0;
 		
 		if(obj == null){
-			response.sendRedirect("../fklogin.jsp");
+			response.sendRedirect("../main/fklogin.jsp");
 		}else{
 		
 		FkcustomerVO vo5 = (FkcustomerVO)obj;
@@ -60,8 +60,8 @@
     
     %>   
     <script>
-    	location.href="fkviewcart.jsp";    
-    </script> 
+    	location.href="../cart/fkviewcart.jsp";    
+    </script>
     	
 </body>
 </html>

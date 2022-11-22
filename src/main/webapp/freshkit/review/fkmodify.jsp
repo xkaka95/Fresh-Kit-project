@@ -1,3 +1,5 @@
+<%@page import="kr.co.freshkit.vo.FkcustomerVO"%>
+<%@page import="kr.co.freshkit.dao.FkcustomerDAO"%>
 <%@page import="kr.co.freshkit.vo.FkreviewVO"%>
 <%@page import="kr.co.freshkit.dao.FkreviewDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -21,8 +23,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script type="text/javascript">
-
 </script>
+<style>
+.title {
+	margin-left: 300px;
+	margin-bottom: 50px;
+	font-weight: bolder;
+	width: 1000px;
+	border-bottom: 4px solid #82ac64;
+	padding: 20px 0px 36px;
+	}
+	</style>
 </head>
 <body>
 <jsp:include page="../main/header.jsp"/>
@@ -35,26 +46,28 @@
 		FkreviewDAO dao = new FkreviewDAO();
 		FkreviewVO vo = dao.selectOne(reno);
 	
+		FkcustomerDAO dao2 = new FkcustomerDAO(); // fkcustomer 테이블에 fkreview테이블에서 가져온 vo값 넣기
+		FkcustomerVO vo2 = dao2.selectOne(vo.getNo());
 %>
 
+		<h2 class="title">수정</h2>
 	<div class="container1">
-		<div class="jointitle">리뷰수정</div>
 		<div class="container1-1">
 			
 			<div style="padding: 0px; width: 620px;">
-				<form action="fkmodifyOk.jsp" method="get" >
+				<form action="fkmodifyOk.jsp" method="post" enctype="multipart/form-data">
 				
 				<div id="rating">
 				<div class="jull">
 					<div class="jull1">
-						<label class="julltext1">고객번호</label> 
+						<label class="julltext1">아이디</label> 
 					</div>
 					<div class="jull2">
 						<div class="jull2_1">
 							<div class="jull2_2">
 							<input type="hidden" name="reno" value="<%=vo.getReno() %>" />
 							<input type="hidden" name="no" value="<%= vo.getNo() %>" />
-							<input type="text" disabled="disabled" style="width:450px; height:50px;" name="writer" id="" value="<%= vo.getNo() %>" />
+							<input type="text" disabled="disabled" style="width:450px; height:50px;" name="writer" id="" value="<%= vo2.getId() %>" />
 								
 							</div>
 						</div>
@@ -65,7 +78,7 @@
 
 				<div class="jull">
 					<div class="jull1">
-						<label class="julltext1">제목(상품명)</label> 
+						<label class="julltext1">상품명</label> 
 					</div>
 					<div class="jull2">
 						<div class="jull2_1">
@@ -77,12 +90,24 @@
 					</div>
 				</div>
 
+				<div class="jull">
+					<div class="jull1">
+						<label class="julltext1" id="reimg">이미지</label> 
+					</div>
+					<div class="jull2">
+						<div class="jull2_1">
+							<div class="jull2_2">
+							<input type="file" name="reimg" id="reimg" />
+							
+							</div>
+						</div>
+					</div>
+				</div>
 				
-
 
 				<div class="jull">
 					<div class="jull1">
-						<label class="julltext1" id="recontents">내용</label> 
+						<label class="julltext1" id="recontents">리뷰</label> 
 					</div>
 					<div class="jull2">
 						<div class="jull2_1">
@@ -93,20 +118,8 @@
 						</div>
 					</div>
 				</div>
-				<br><br><br><br><br>
-				<div class="jull">
-					<div class="jull1">
-						<label class="julltext1" id="reimg">이미지</label> 
-					</div>
-					<div class="jull2">
-						<div class="jull2_1">
-							<div class="jull2_2">
-							<img disabled="disabled" src="<%=vo.getReimg() %>"  alt="" style="width:100px; height:150px;"/> 
-							</div>
-						</div>
-					</div>
-				</div>
-				<br><br><br>
+				
+			
 				
 			<table class="rating">
 				<tr>

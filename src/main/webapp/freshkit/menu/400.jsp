@@ -300,8 +300,8 @@ height: 140px;
 
 										<button type="button" id="cart<%=pno%>"
 											class="btn btn-outline-primary">장바구니</button>
-										<a href="fkviewcart.jsp"><button type="button"
-												id="order_in" class="btn btn-outline-danger">구매하기</button></a>
+										<button type="button"
+												id="buy<%=pno %>" class="btn btn-outline-danger">구매하기</button>
 
 									</div>
 								</div>
@@ -353,7 +353,11 @@ $(function() {
 		
 		$('form[class="cartgo<%=pno3%>"]').submit();
 		});
-
+	$("button#buy<%=pno3%>").on("click", function() {
+		console.log("gg");
+		
+		$('form[class="cartgo<%=pno3%>"]').submit();
+		});
 	});
 <%}%>
 	

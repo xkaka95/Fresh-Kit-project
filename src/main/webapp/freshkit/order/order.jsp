@@ -592,6 +592,9 @@ function payaccount(){
 										String[] price = request.getParameterValues("pprice");
 										int[] pprice = new int[price.length];
 										
+										String[] ppno = request.getParameterValues("pno");
+										int[] pno = new int[ppno.length];
+										
 										FkcartDAO dao = new FkcartDAO();
 										ArrayList<FkcartVO> list = dao.selectAll2(no);
 										FkproductDAO dao2 = new FkproductDAO();
@@ -600,11 +603,12 @@ function payaccount(){
 										int priceCnt = 0;
 										
 										DecimalFormat formatter = new DecimalFormat("###,###");
-										for (FkcartVO vo9 : list) {
+										for (int i=0; i<price.length; i++) {
 											
-											pprice[priceCnt] = Integer.parseInt(price[priceCnt]);
+											pprice[i] = Integer.parseInt(price[i]);
+											pno[i] = Integer.parseInt(ppno[i]);
 											
-											vo2 = dao2.selectOne2(vo9.getPno());
+											vo2 = dao2.selectOne2(pno[i]);
 
 											System.out.println(vo2.getPrice());
 										%>
@@ -613,9 +617,9 @@ function payaccount(){
 
 											<td rowspan="2"><img src="<%=vo2.getPimg1()%>" alt=""></td>
 											<td class="price_left_pname"><input type="text" name="pname" id="" value="<%=vo2.getPname()%>" style="width:220px;border:none;"/></td>
-											<td rowspan="2">수량 <input type="text" name="cartCount" id="" value="<%=pprice[priceCnt]/vo2.getPrice()%>" style="width:30px;border:none;text-align:right;" readonly/>개
+											<td rowspan="2">수량 <input type="text" name="cartCount" id="" value="<%=pprice[i]/vo2.getPrice()%>" style="width:30px;border:none;text-align:right;" readonly/>개
 											</td>
-											<td rowspan="2"><input type="text" name="orderSum" id="" value="<%=pprice[priceCnt]%>" style="width:80px;text-align:right;border:none;font-weight:bold;" readonly/>원</td>
+											<td rowspan="2"><input type="text" name="orderSum" id="" value="<%=pprice[i]%>" style="width:80px;text-align:right;border:none;font-weight:bold;" readonly/>원</td>
 										</tr>
 										<tr>
 
@@ -626,8 +630,7 @@ function payaccount(){
 
 										</tr>
 										<%
-											sum += pprice[priceCnt];
-											priceCnt++;
+											sum += pprice[i];
 										}
 										%>
 

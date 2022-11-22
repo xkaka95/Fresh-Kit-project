@@ -70,7 +70,7 @@
                         </a>
                     </li>
                     <li class="g_mu">
-                    <a href="../menu/menu.jsp">
+                    <a href="../menu/search.jsp">
                     <span class="txt">메뉴찾기</span>
                     </a>
                 </ul>

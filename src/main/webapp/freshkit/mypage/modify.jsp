@@ -99,6 +99,7 @@
 		footer {
 			height: 290px;
 			background-color: blanchedalmond;
+			clear: both;
 		}
 		
 		#addrsSearch {

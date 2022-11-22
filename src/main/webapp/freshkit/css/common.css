@@ -162,7 +162,7 @@ textarea {width:100%; border:0; overflow-y:auto; resize:none}
 #head .my_gmenu li.g_od .num {position:absolute; right:4px; top:-1px; width:16px; height:16px; border-radius:8px; background-color:#FF2727; color:#fff; font-weight:700; font-size:9px; line-height:16px; text-align:center}
 #head .my_gmenu li.g_my a:before {background-position:-540px -320px}
 #head .my_gmenu li.g_od a:before {background-position:-584px -320px}
-#head .my_gmenu li.g_mu a:before {background-position:-628px -320px}
+#head .my_gmenu li.g_mu a:before {background-position:0}
 /* LAYOUT - FOOTER */
 #footer{position:relative; z-index:999;}
 #footer .footer_wrap {position:relative; min-width:1260px; height:290px; margin:0 auto; background-color:#202020; text-align:center}

@@ -22,6 +22,13 @@
 .review_box {margin-left:300px; width:1000px;}
 .fkreview_wrap {margin-left:350px; margin-bottom:30px;}
 .fkreview_wrap >img {width:300px; height: 400px; margin-right:250px;}
+.title {
+	margin-bottom: 50px;
+	font-weight: bolder;
+	width: 1000px;
+	border-bottom: 4px solid #82ac64;
+	padding: 20px 0px 36px;
+	}
 </style>
 
 </head>
@@ -92,14 +99,15 @@
 %>
 	
 		<div class="review_box">
-	
+			<h2 class="title">FreshKit 다양한 후기를 만나보세요!</h2>
+			
 		<table class="table table-sm">
 	
 			<tr>
 				<th>리뷰번호</th>
-				<th>고객번호</th>
-				<th>Product</th>
-				<th>Date</th>
+				<th>아이디</th>
+				<th>상품명</th>
+				<th>작성일</th>
 			</tr>
 			
 			<% 
@@ -107,18 +115,22 @@
 			for(FkreviewVO vo : list){
 				//날짜형식
 				Date date = new Date();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+				
+				FkcustomerDAO dao2 = new FkcustomerDAO();
+				FkcustomerVO vo2 = dao2.selectOne(vo.getNo());
 				
 			%>
 			<tr>
 				<td><%=vo.getReno() %></td>
-				<td><%=vo.getNo() %></td>
+				<td><%=vo2.getId() %></td>
 				<td><a href="fkdetail.jsp?reno=<%=vo.getReno()%>"><%=vo.getRetitle()%></a></td>
-				<td><%= sdf.format(vo.getRedate()) %></td>
-				
+				<td><%= sdf.format(vo.getRedate()) %></td> 
+			
 			</tr>
 			
 		<%
+		
 			}
 		%>
 
@@ -176,10 +188,11 @@
 			</form>
 		</div>
 	</div>
+		
 	
-	<br><br><br>
+	
 	<div class="fk_sns">
-		<div class="h4 pb-2 mb-4 text-success border-bottom border-success"></div>
+		
 			<div>
 				<div class="fkreview_wrap">
 				<img src="../images/re1.jpg" alt="" />
@@ -188,7 +201,6 @@
 		</div>
 	</div>
 		
-
 	<jsp:include page="../main/footer.jsp"/>
 	
 </body>

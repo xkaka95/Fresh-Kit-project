@@ -34,6 +34,8 @@ public class FkreviewDAO {
 				e.printStackTrace();
 			}
 		}//constructor end
+		
+		
 		// 총게시물 수
 		public int getTotal() {
 			sb.setLength(0);
@@ -81,6 +83,7 @@ public class FkreviewDAO {
 			return list2;
 			
 		}
+		
 		// 최근 작성한 게시물 8개만 가져오기 selectAll(시작번호, 끝번호)
 			 public ArrayList<FkreviewVO> selectAll(int startNo, int endNo) {
 			 ArrayList<FkreviewVO> list = new ArrayList<FkreviewVO>(); 
@@ -117,7 +120,8 @@ public class FkreviewDAO {
 				  } 
 			 return list; 
 			 }
-	public FkreviewVO selectOne(int reno) {
+			 
+		public FkreviewVO selectOne(int reno) {
 		sb.setLength(0);
 		sb.append("SELECT * FROM fkreview ");
 		sb.append("WHERE reno = ? ");
@@ -152,11 +156,12 @@ public class FkreviewDAO {
 		return vo;
 
 	}
+		
 	//상품명으로 게시물 검색
- public ArrayList<FkreviewVO> reSearch(String searchText){//특정한 리스트를 받아서 반환
-     ArrayList<FkreviewVO> list = new ArrayList<FkreviewVO>();
-    sb.setLength(0);
-	sb.append("select * from fkreview where retitle like '%'||?||'%' " );
+		public ArrayList<FkreviewVO> reSearch(String searchText){//특정한 리스트를 받아서 반환
+			ArrayList<FkreviewVO> list = new ArrayList<FkreviewVO>();
+			sb.setLength(0);
+			sb.append("select * from fkreview where retitle like '%'||?||'%' " );
       try {
             
             pstmt = conn.prepareStatement(sb.toString()); 
@@ -193,19 +198,17 @@ public class FkreviewDAO {
 	public void insertOne(FkreviewVO vo) {
 		sb.setLength(0);
 		sb.append("INSERT INTO fkreview ");
-		sb.append("VALUES (?,?,?,?,?,?) ");
+		sb.append("VALUES (fkreview_RENO_SEQ.NEXTVAL,?,?,sysdate,?,?) ");
 		
 		try {
 			pstmt = conn.prepareStatement(sb.toString());
 		
 		
 			
-			pstmt.setInt(1, vo.getReno());
-			pstmt.setInt(2, vo.getNo());
-			pstmt.setString(3, vo.getRecontents());
-			pstmt.setTimestamp(4, vo.getRedate());
-			pstmt.setString(5, vo.getRetitle());
-			pstmt.setString(6, vo.getReimg());
+			pstmt.setInt(1, vo.getNo());
+			pstmt.setString(2, vo.getRecontents());
+			pstmt.setString(3, vo.getRetitle());
+			pstmt.setString(4, vo.getReimg());
 			
 			pstmt.executeUpdate();
 			
@@ -218,21 +221,18 @@ public class FkreviewDAO {
 		
 		sb.setLength(0);
 		sb.append("UPDATE fkreview ");
-		sb.append("SET no=?, recontents=? redate=? retitle=? reimg=? ");
+		sb.append("SET no=?, recontents=?, redate=sysdate, retitle=?, reimg=? ");
 		sb.append("WHERE reno=? ");
 		
 		
 		try {
 			pstmt = conn.prepareStatement(sb.toString());
 		
-		
-			
 			pstmt.setInt(1, vo.getNo());
 			pstmt.setString(2, vo.getRecontents());
-			pstmt.setTimestamp(3, vo.getRedate());
-			pstmt.setString(4, vo.getRetitle());
-			pstmt.setString(5, vo.getReimg());
-			pstmt.setInt(6, vo.getReno());
+			pstmt.setString(3, vo.getRetitle());
+			pstmt.setString(4, vo.getReimg());
+			pstmt.setInt(5, vo.getReno());
 			
 			pstmt.executeUpdate();
 			

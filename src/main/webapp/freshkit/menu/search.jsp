@@ -1,8 +1,6 @@
-<%@page import="java.text.DecimalFormat"%>
-<%@page import="kr.co.freshkit.dao.FkcartDAO"%>
-<%@page import="oracle.jdbc.Const"%>
-<%@page import="java.util.ArrayList"%>
+ <%@page import="java.text.DecimalFormat"%>
 <%@page import="kr.co.freshkit.vo.FkproductVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="kr.co.freshkit.dao.FkproductDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -16,13 +14,19 @@
 
 
 <title>freshkit</title>
-</head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+	crossorigin="anonymous"></script>
 
-	<style>
+<style>
 #footer {
 	clear: both;
 }
@@ -35,7 +39,7 @@
 }
 
 #content {
-	padding: 52px 0 140px;
+	padding: 52px 0 100px;
 }
 
 .pd_mu_wrap .olki_list_wrap .top_sec {
@@ -56,6 +60,42 @@
 
 .top_sec {
 	height: 100px;
+}
+
+.box_search_gray {
+	margin: 24px 0 -54px;
+	padding: 32px 220 32 220;
+	background-color: #f7f7f7;
+}
+
+.input_wrap_field {
+	width: 650;
+	text-align: left;
+	height: 70px;
+	padding: 0 20px 0 20px;
+	border: 2px solid #202020;
+	color: #101010;
+	font-weight: 700;
+	font-size: 20px;
+	opacity: 1;
+	background-color: white;
+}
+
+input.text {
+	font-family: '맑은고딕';
+	height: 55px;
+	padding: 0 156px 0 20px;
+	margin-top: 10;
+	border: 0;
+	font-weight: 1000;
+	font-size: 20px;
+	opacity: 1;
+}
+
+.srch_gray {
+	margin: 50px 0 50px 100px;
+	width: 750px;
+	/* background-color: rgb(231, 255, 111) ;*/
 }
 
 hr {
@@ -85,8 +125,9 @@ ul {
 }
 
 .pro_module {
+	text-align: left;
 	width: 200px;
-	height: 400px;
+	min-height: 300px;
 	position: relative;
 	margin-top: 60px;
 }
@@ -100,27 +141,33 @@ ul {
 li {
 	list-style: none;
 }
+#button-addon2{
+	clear: both;
+	vertical-align: middle;
+	font-size: 20px;
+	
+}
 
 a {
 	color: inherit;
 	text-decoration: none;
 }
 
+.page_num {
+	text-align: center;
+	clear: both;
+}
+
 .pd_mu_wrap .olki_list_wrap .top_sub_sec h3 {
 	color: #101010;
 	font-weight: 700;
-	font-size: 30px;
+	font-size: 22px;
 	line-height: 32px;
 }
 
 .pd_mu_wrap .olki_list_wrap .top_sub_sec {
 	padding: 100px 0 16px;
 	border-bottom: 2px solid #202020;
-}
-
-.page_num {
-	text-align: center;
-	clear: both;
 }
 
 .txt_wrap {
@@ -142,42 +189,25 @@ span.dcratio_price {
 	text-decoration: line-through;
 }
 
-div.page_num {
-	margin-left: 450px;
-	text-align: center;
+#footer {
+	clear: both;
 }
 
-img {
+.img_wrap img {
 	width: 200px;
-	height: 200px;
 }
+.pro_btm{
+clear:both;
 
-.under_theme{
-
-height: 100px;
-}
-.un_theme_hei{
-margin: 20px auto;
-height: 140px;
+height: 200px;
 }
 </style>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-	<script type="text/javascript">
-	
-	
-	
-	
-	
-	
-	
-	</script>
+</head>
+
+
 <body>
-<jsp:include page="../main/header.jsp" />
+	<jsp:include page="../main/header.jsp" />
 	<section id="container">
-
-
-
 		<div id="content" class="pd_wrap pd_mu_wrap">
 
 			<div class="olki_list_wrap">
@@ -186,65 +216,55 @@ height: 140px;
 
 				<!--1단-->
 				<div id="content" class="top_sec">
-					<h2>FRESHKIT 메뉴</h2>
+					<h2>메뉴찾기</h2>
 
 				</div>
-				<!-- ============================================================ -->
-					<div class="under_theme">
+
+				<div class="srch_gray">
+
+					<!--검색 회색-->
+<%
+
+
+%>
+					<!-- 검색창 -->
+					<form action="searchname.jsp"><div class="input-group mb-3">
+						<input type="text" class="form-control form-control-lg"
+							placeholder="메뉴명으로 검색해주세요" aria-label=".form-control-lg example"
+							aria-describedby="button-addon2" name="msg">
 						
-						
-						
-						<div class="btn-group btn-group-lg" role="group"
-							aria-label="Large button group">
-							<a type="button" class="btn btn-outline-dark"
-								onclick="alltheme()"  href="menu.jsp">전체보기</a>
-
-
-						</div>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-							<div class="btn-group btn-group-lg" role="group"
-								aria-label="Large button group">
-								<a type="button" class="btn btn-outline-dark" href="100.jsp">한식</a>
-								<a type="button" class="btn btn-outline-dark" href="200.jsp">양식</a>
-								<a type="button" class="btn btn-outline-dark" href="300.jsp">중식/일식</a>
-								<a type="button" class="btn btn-outline-dark" href="400.jsp">동남아</a>
-								<a type="button" class="btn btn-outline-dark" href="500.jsp">분식/야식</a>
-							</div>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-
-							<div class="btn-group btn-group-lg sidefood" role="group"
-								aria-label="Large button group">
-								<a type="button" class="btn btn-outline-dark" href="600.jsp">샐러드</a>
-								
-									<a type="button" class="btn btn-outline-dark" href="800.jsp">반찬</a>
-									<a type="button" class="btn btn-outline-dark" href="900.jsp">키즈</a>
-
-							</div>
-
-						
+						<button class="btn btn-outline-secondary" type="submit"
+							id="button-addon2" >검색</button>
 					</div>
-				
-<!--검색 회색-->
+</form>
+					<!-- 검색창 -->
+					<p>
+						<mark>FRESHKIT</mark>
+						의 모든 메뉴를 쉽고 빠르게 찾아볼 수 있습니다.
+					</p>
+
+				</div>
+
+				<!--검색 회색-->
 
 
 
 
-				<!--2단 -->
+
+
+
 				<!--판매중인 상품 -->
 
-
 				<div class="top_sub_sec">
-					<h3>분식 / 야식</h3>
+					<h3>판매중</h3>
 				</div>
 				<div class="pro_list">
 
 					<ul class="salePrd">
-
-
 						<%
-						int hsno=500;
+                          
 						FkproductDAO dao = new FkproductDAO();
-						ArrayList<FkproductVO> list = dao.selectAll2(hsno);
+						ArrayList<FkproductVO> list = dao.selectAll();
 						int cnt = 0;
 						for (FkproductVO vo : list) {
 							int pno = vo.getPno();
@@ -264,7 +284,7 @@ height: 140px;
 						<!-- loop -->
 						<li class="item">
 							<!--상품 리스트-->
-							<form class="cartgo<%=pno%>" action="../cart/cart.jsp" name="frm">
+							<form class="cartgo<%=pno%>" action="cart.jsp" name="frm">
 
 								<div class="pro_module">
 									<!--상품전체 module-->
@@ -276,7 +296,7 @@ height: 140px;
 										</a>
 									</div>
 									<div class="txt_wrap">
-										<input type="hidden" name="pno" value="<%=vo.getPno()%>" />
+										<input type="hidden" name="no" value="<%=vo.getPno()%>" />
 
 										<div class="tit_info">
 											<!--상품정보 div-->
@@ -290,6 +310,7 @@ height: 140px;
 												class="price"><%=formatter.format(dprice)%></span><span
 												class="won">원</span> <span class="dcratio_price"><%=formatter.format(price)%>원</span>
 
+
 										</div>
 
 
@@ -300,11 +321,12 @@ height: 140px;
 
 										<button type="button" id="cart<%=pno%>"
 											class="btn btn-outline-primary">장바구니</button>
-										<button type="button"
-												id="buy<%=pno %>" class="btn btn-outline-danger">구매하기</button>
+										<a href="fkviewcart.jsp"><button type="button"
+												id="order_in" class="btn btn-outline-danger">구매하기</button></a>
 
 									</div>
 								</div>
+								
 							</form>
 						</li>
 						<!--loop 끝-->
@@ -318,51 +340,37 @@ height: 140px;
 
 					</ul>
 				</div>
-				<!-- 다음 페이징 -->
-				<!-- 
-				<div class="page_num">
-					<nav aria-label="...">
-						<ul class="pagination">
-							<li class="page-item disabled"><a class="page-link"><span
-									aria-hidden="true">&laquo;</span></a></li>
-							<li class="page-item active"><a class="page-link" href="#">1</a></li>
-							<li class="page-item" aria-current="page"><a
-								class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#"> <span
-									aria-hidden="true">&raquo;</span></a></li>
-						</ul>
-					</nav>
-				</div> -->
-			</div>
-		</div>
-		<!--inner단-->
 
+
+
+
+
+			</div>
+			<!--inner단-->
+		</div>
+		<div class="pro_btm">
+								
+								</div>
 	</section>
-<jsp:include page="../main/footer.jsp" />
+	<jsp:include page="../main/footer.jsp" />
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
+
 
 <%FkproductDAO dao1 = new FkproductDAO();
 ArrayList<FkproductVO> list2 = dao1.selectAll();
 for (FkproductVO vo2 : list) {
 	int pno3 = vo2.getPno();%>
-$(function() {
+
+	$(function() {
 	$("button#cart<%=pno3%>").on("click", function() {
-		console.log("gg");
+		
 		
 		$('form[class="cartgo<%=pno3%>"]').submit();
 		});
-	$("button#buy<%=pno3%>").on("click", function() {
-		console.log("gg");
-		
-		$('form[class="cartgo<%=pno3%>"]').submit();
-		});
+
 	});
 <%}%>
-	
 </script>
-
-
-
 </html>

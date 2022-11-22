@@ -38,6 +38,8 @@ if(vo==null){
 	alert("Freshkit에 오신걸 환영합니다!");
 	<%
 	session.setAttribute("vo",vo);
+	session.setAttribute("id",id);
+	session.setAttribute("pw",pw);
 	%>
 	location.href="../main/main.jsp";
 	

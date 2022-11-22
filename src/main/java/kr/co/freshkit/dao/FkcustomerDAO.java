@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import kr.co.freshkit.vo.FkcustomerVO;
 
@@ -56,7 +57,9 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		} finally {
+			close();
+		}
 		return ick; 
 		
 		
@@ -277,6 +280,41 @@ public class FkcustomerDAO {
 		
 	}
 	
+	
+	//관리자페이지 전체조회
+			public List<FkcustomerVO> selectAll2(){
+		        		
+				List<FkcustomerVO> list = new ArrayList<FkcustomerVO>();
+				sb.setLength(0);
+				sb.append("select * from fkcustomer ");
+				sb.append("order by id ");
+				
+				try {
+					pstmt = conn.prepareStatement(sb.toString());
+					
+					rs = pstmt.executeQuery();
+					
+					while(rs.next()){
+						list.add(new FkcustomerVO(
+								rs.getInt("no")
+								,rs.getString("grade")
+								,rs.getString("id")
+								,rs.getString("pw")
+								,rs.getString("name")
+								,rs.getString("gender")
+								,rs.getString("email")
+								,rs.getString("address")
+								,rs.getString("post")
+								,rs.getString("phone")));
+						}
+					} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+				return list;
+				
+			}
+	
 	//회원조회
 	public FkcustomerVO selectOne(int no) {
 		sb.setLength(0);
@@ -443,6 +481,27 @@ public class FkcustomerDAO {
 		}	
 		
 	}
+	
+	
+	//관리자가 회원삭제
+		public int removeCustomer(String id, String pw) {
+			int row = 0;
+			sb.setLength(0);
+			sb.append("delete from fkcustomer where id=? ");
+			
+			try {
+				pstmt=conn.prepareStatement(sb.toString());
+				pstmt.setString(1, id);
+				row=pstmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close();
+			}
+			return row;
+		}
+	
 	public FkcustomerVO isExists(String id,String pw) {
 		
 		sb.setLength(0);
@@ -477,9 +536,7 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
-		}
+		} 
 		return vo; //
 		
 	}
