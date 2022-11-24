@@ -20,9 +20,14 @@
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <title>FRESHKIT</title>
 <style>
-.review_box {margin-left:300px; width:1000px;}
+ .review_box {
+ 		margin: 0px auto;
+			/* 화면비율유지*/
+	width: 960px;
+	height: 100%;
+ } 
 .fkreview_wrap {margin-left:350px; margin-bottom:30px;}
-.fkreview_wrap >img {width:300px; height: 400px; margin-right:250px;}
+.fkreview_wrap >img {width:300px; height: 400px; margin-right:250px; }
 .title {
 	margin-bottom: 50px;
 	font-weight: bolder;
@@ -201,6 +206,7 @@
 			</div>
 		</div>
 	</div>
+	
 		
 	<jsp:include page="../main/footer.jsp"/>
 	
