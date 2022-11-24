@@ -57,8 +57,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		return ick; 
 		
@@ -84,8 +82,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		return isOk; 
 		
@@ -110,8 +106,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		return isOk; 
 		
@@ -120,35 +114,36 @@ public class FkcustomerDAO {
 	
 	
 	
-	public String findById(String name,String phone) {
-		String fkid = null;
+	public FkcustomerVO findById(String id) {
 		sb.setLength(0);
-		sb.append("select id from fkcustomer " );
-		sb.append("where name = ? " );
-		sb.append("and phone = ? " );
-		
+		sb.append("select * from fkcustomer " );
+		sb.append("where id = ? " );
+		FkcustomerVO vo = null;
 		try {
 			pstmt = conn.prepareStatement(sb.toString());
-			pstmt.setString(1, name);
-			pstmt.setString(2, phone);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				fkid=rs.getString("id");
+				int no = rs.getInt("no");
+				String grade=rs.getString("grade");
+				String pw=rs.getString("pw");
+				String name=rs.getString("name");
+				String gender=rs.getString("gender");
+				String email=rs.getString("email");
+				String address=rs.getString("address");
+				String post=rs.getString("post");
+				String phone=rs.getString("phone");
+				vo=new FkcustomerVO(no,grade,id,pw,name,gender,email,address,post,phone);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		
-		return fkid;
+		return vo;
 		
 	}
-
-		
-	
 	public String findByPw(String name,String id,String phone) {
 		String fkpw = null;
 		sb.setLength(0);
@@ -170,8 +165,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		
 		return fkpw;
@@ -196,8 +189,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		
 	}
@@ -228,8 +219,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		
 		return vo;
@@ -270,8 +259,6 @@ public class FkcustomerDAO {
 			} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		return list;
 		
@@ -340,8 +327,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		return vo;
 	}
@@ -373,8 +358,6 @@ public class FkcustomerDAO {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} finally {
-				close();
 			}
 			
 		  
@@ -406,8 +389,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		
 	}
@@ -452,9 +433,7 @@ public class FkcustomerDAO {
 			// TODO Auto-generated catch block
 			System.out.println("삭제 실패");
 			e.printStackTrace();
-		} finally {
-			close();
-		}     	
+		}   	
 		
 	}
 	//아이디,패스워드로 삭제
@@ -493,8 +472,6 @@ public class FkcustomerDAO {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} finally {
-				close();
 			}
 			return row;
 		}
@@ -551,5 +528,4 @@ public class FkcustomerDAO {
 }
 
 	
-
 

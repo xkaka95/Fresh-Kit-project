@@ -5,14 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>FRESHKIT</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
 	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
 	rel="stylesheet">
 	
-	 
+	 <link rel="shortcut icon" href="../images/mainlogo_footer.png">
 <style>
 .jull {
 	display: inline-flex;
@@ -150,7 +150,7 @@ background: #318F23;
 </style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script type="text/javascript" src="../../js/httpRequest.js"></script>
+<script type="text/javascript" src="../js/httpRequest.js"></script>
 <script type="text/javascript">
 function checkForm(x){
 	    
@@ -304,7 +304,7 @@ $(function(){
 		    	var params = "customerid="+txt;
 		    	
 		    	
-		    	sendRequest("../main/fkIdCheck.jsp",params,callback,"GET");
+		    	sendRequest("fkIdCheck.jsp",params,callback,"GET");
 		    	
 		        	
 		    	

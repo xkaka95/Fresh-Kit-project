@@ -11,12 +11,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>fkqnadetail.jsp</title>
+<title>FRESHKIT</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
 	crossorigin="anonymous">
+	<link rel="shortcut icon" href="../images/mainlogo_footer.png">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
@@ -298,12 +299,10 @@
 
 
 						<%
-						} else if (person.getId() != null && person.getGrade().equals("관리자") && vo9 == null) {
+						} else{
 						%>
 						<input type="button" value="삭제" class="btn btn-danger" />
 						<%
-						} else {
-
 						}
 						%>
 

@@ -34,7 +34,7 @@
 }
 
 #content {
-	padding: 52px 0 140px;
+	padding:20px 0 100px;
 }
 
 .pd_mu_wrap .olki_list_wrap .top_sec {
@@ -62,19 +62,7 @@ hr {
 	border: 3px;
 }
 
-.second_wrap {
-	margin-top: 120px;
-	width: 1000px;
-}
 
-.top_sub_title {
-	color: #101010;
-	font-weight: 700;
-	font-size: 22px;
-	line-height: 32px;
-	padding: 100px 0 16px;
-	border-bottom: 2px solid #202020;
-}
 
 ul {
 	margin: 0;
@@ -85,9 +73,9 @@ ul {
 
 .pro_module {
 	width: 200px;
-	height: 400px;
+	height: 380px;
 	position: relative;
-	margin-top: 60px;
+	margin-top: 20px;
 }
 
 .pro_list .item {
@@ -113,7 +101,7 @@ a {
 }
 
 .pd_mu_wrap .olki_list_wrap .top_sub_sec {
-	padding: 100px 0 16px;
+	padding: 20px 0 16px;
 	border-bottom: 2px solid #202020;
 }
 
@@ -151,14 +139,14 @@ img {
 	height: 200px;
 }
 
-.under_theme{
+.under_theme {
+	height: 80px;
+	width: 1000px;
+}
+.tit_mt  {
+font-weight: 550;
+}
 
-height: 100px;
-}
-.un_theme_hei{
-margin: 20px auto;
-height: 140px;
-}
 </style>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>

@@ -1,7 +1,8 @@
-<%@page import="kr.co.freshkit.vo.FkreviewVO"%>
-<%@page import="kr.co.freshkit.dao.FkreviewDAO"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
+<%@page import="kr.co.freshkit.vo.FkreviewVO"%>
+<%@page import="kr.co.freshkit.dao.FkreviewDAO"%>
+
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 

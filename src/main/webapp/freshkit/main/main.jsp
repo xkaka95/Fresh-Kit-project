@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="../css/header.css">
 	<link rel="stylesheet" href="../css/footer.css">
 	<link rel="shortcut icon" href="../images/mainlogo_footer.png">
+	
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap');

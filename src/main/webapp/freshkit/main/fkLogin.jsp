@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FreshKit 공식몰</title>
+<title>FRESHKIT</title>
 <link rel="stylesheet" type="text/css"
 	href="../css/common.css">
 
@@ -14,6 +14,7 @@
 	href="../css/pd.css">
 <link rel="stylesheet"
 	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+	<link rel="shortcut icon" href="../images/mainlogo_footer.png">
 <style>
 	.btnlogin {
 	/* transition: all .2s;

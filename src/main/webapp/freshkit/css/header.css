@@ -35,7 +35,7 @@ a:active {background-color:transparent; text-decoration:none;}
 #head .gnb_util li:first-child a:before {display:none;}
 #head .gnb_menu {position:relative; max-width:1920px; min-width:1260px; height:81px; margin:0 auto; padding-top:24px;  text-align:center}
 #head .gnb_menu .logo {position:absolute; left:40px; top:20px;}
-#head .gnb_menu .logo a {display: inline-block; width:160px; height:40px; background:url('../images/mainlogo.png') -10px -10px no-repeat; background-size:160px 70px;}
+#head .gnb_menu .logo a {display: inline-block; width:160px; height:40px; background:url('../images/mainlogo.png') 3px 1px no-repeat; background-size:158px 40px;}
 #head .list_gmenu {display:inline-block; font-size:0; line-height:0}
 #head .list_gmenu li {display:inline-block; font-size:0; line-height:0}
 #head .list_gmenu li a {display:inline-block; padding:0 32px; color:#101010; font-weight:700; font-size:22px; line-height:32px;}

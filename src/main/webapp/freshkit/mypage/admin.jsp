@@ -16,7 +16,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>FRESHKIT</title>
+<link rel="shortcut icon" href="../images/mainlogo_footer.png">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(function(){

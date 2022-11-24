@@ -6,11 +6,12 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>withdrawal.html</title>
+	<title>FRESHKIT</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="../css/header.css">
 	<link rel="stylesheet" href="../css/footer.css">
+	<link rel="shortcut icon" href="../images/mainlogo_footer.png">
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap');
@@ -20,16 +21,23 @@
 		}
 
 		#side1 {
-			background-color: #d9e2ae;
-			width: 300px;
-			height: 1200px;
-			float: left;
-			font-family: 'Noto Sans KR', sans-serif;
-		}
-		#side1>p {
-			padding-bottom: 10px;
-			padding-left: 10px;
-		}
+	background-color: #d9ffb2;
+	width: 300px;
+	height: 100%;
+	min-height: 1500px;
+	float: left;
+	font-family: 'Noto Sans KR', sans-serif;
+	clear: both;
+	
+}
+
+#side1>p {
+	padding-bottom: 10px;
+	padding-left: 10px;
+	margin-left: 20px;
+	margin-bottom: 5px;
+}
+
 		#header{
 
 			font-family: 'Noto Sans KR', sans-serif;

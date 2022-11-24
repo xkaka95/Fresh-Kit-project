@@ -4,8 +4,6 @@
 
     <link rel="stylesheet" type="text/css" href="../css/header.css">
 
-    
-
 <header id="head">
     <div class="gnb_wrap">
         <div class="gnb_util">

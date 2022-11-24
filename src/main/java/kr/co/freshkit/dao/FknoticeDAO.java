@@ -12,22 +12,20 @@ import kr.co.freshkit.vo.FkcartVO;
 import kr.co.freshkit.vo.FknoticeVO;
 
 public class FknoticeDAO {
-	String driver = "com.mysql.cj.jdbc.Driver";
-//	String url = "jdbc:mysql://서버IP:port번호/mysql내접속할db명"
-	String url = "jdbc:mysql://freshkit.chfv6yulywaz.ap-northeast-2.rds.amazonaws.com:3306/semidb";
-	String user = "admin";
-	String password ="dkssud1234";
-
-	
-	Connection conn =null;
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+	String user = "scott";
+	String password = "tiger";
+	Connection conn = null;
 	PreparedStatement pstmt = null;
 	StringBuffer sb = new StringBuffer();
 	ResultSet rs = null;
+
 	
 	public FknoticeDAO() {
 		try {
 			Class.forName(driver);
-			conn = DriverManager.getConnection(url,user,password);
+			conn = DriverManager.getConnection(url, user, password);
 			System.out.println("conn : " + conn);
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패");

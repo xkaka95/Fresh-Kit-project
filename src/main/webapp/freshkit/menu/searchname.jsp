@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 
-<title>freshkit</title>
+<title>FRESHKIT</title>
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
@@ -22,6 +22,7 @@
 	rel="stylesheet"
 	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
 	crossorigin="anonymous">
+	<link rel="shortcut icon" href="../images/mainlogo_footer.png">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
@@ -40,7 +41,7 @@
 }
 
 #content {
-	padding: 52px 0 100px;
+	padding: 20px 0 70px;
 }
 
 .pd_mu_wrap .olki_list_wrap .top_sec {
@@ -94,7 +95,7 @@ input.text {
 }
 
 .srch_gray {
-	margin: 50px 0 50px 100px;
+	margin: 25px 0 25px 100px;
 	width: 750px;
 	/* background-color: rgb(231, 255, 111) ;*/
 }
@@ -104,10 +105,6 @@ hr {
 	border: 3px;
 }
 
-.second_wrap {
-	margin-top: 120px;
-	width: 1000px;
-}
 
 .top_sub_title {
 	color: #101010;
@@ -126,11 +123,10 @@ ul {
 }
 
 .pro_module {
-	text-align: left;
 	width: 200px;
-	min-height: 300px;
+	height: 380px;
 	position: relative;
-	margin-top: 60px;
+	margin-top: 20px;
 }
 
 .pro_list .item {
@@ -167,13 +163,13 @@ a {
 }
 
 .pd_mu_wrap .olki_list_wrap .top_sub_sec {
-	padding: 100px 0 16px;
+	padding: 50px 0 10px;
 	border-bottom: 2px solid #202020;
 }
 
 .txt_wrap {
 	font-family: "맑은고딕";
-	font-weight: 400;
+	
 	font-size: 17px;
 	line-height: 23px;
 	margin: 10px 0px 10px 0px;
@@ -197,11 +193,16 @@ span.dcratio_price {
 .img_wrap img {
 	width: 200px;
 }
-
 .pro_btm{
 clear:both;
+
 height: 200px;
 }
+
+.tit_mt  {
+font-weight: 550;
+}
+
 .plz *{
 margin-left:200px;
 margin-top:30px;
@@ -336,7 +337,7 @@ font-weight: 600;
 						<!-- loop -->
 						<li class="item">
 							<!--상품 리스트-->
-							<form class="cartgo<%=pno%>" action="cart.jsp" name="frm">
+							<form class="cartgo<%=pno%>" action="../cart/cart.jsp" name="frm">
 
 								<div class="pro_module">
 									<!--상품전체 module-->
@@ -348,7 +349,7 @@ font-weight: 600;
 										</a>
 									</div>
 									<div class="txt_wrap">
-										<input type="hidden" name="no" value="<%=vo.getPno()%>" />
+										<input type="hidden" name="pno" value="<%=vo.getPno()%>" />
 
 										<div class="tit_info">
 											<!--상품정보 div-->
@@ -373,12 +374,11 @@ font-weight: 600;
 
 										<button type="button" id="cart<%=pno%>"
 											class="btn btn-outline-primary">장바구니</button>
-										<a href="fkviewcart.jsp"><button type="button"
-												id="order_in" class="btn btn-outline-danger">구매하기</button></a>
+										<button type="button"
+												id="buy<%=pno %>" class="btn btn-outline-danger">구매하기</button>
 
 									</div>
 								</div>
-								
 							</form>
 						</li>
 						<!--loop 끝-->
@@ -411,7 +411,6 @@ font-weight: 600;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
 
-
 <%FkproductDAO dao1 = new FkproductDAO();
 ArrayList<FkproductVO> list2 = dao1.selectAll();
 for (FkproductVO vo2 : list) {
@@ -423,7 +422,15 @@ $(function() {
 		$('form[class="cartgo<%=pno3%>"]').submit();
 		});
 
+	$("button#buy<%=pno3%>").on("click", function() {
+		console.log("gg");
+		
+		$('form[class="cartgo<%=pno3%>"]').submit();
+		});
 	});
 <%}%>
+	
 </script>
+
+
 </html>
