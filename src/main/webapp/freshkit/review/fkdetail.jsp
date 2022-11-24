@@ -61,7 +61,8 @@ function checkStar(){
 
 .rating { margin-top: 250px;}
 .title {
-	margin: 0px auto;
+
+margin: 0px auto;
 			/* 화면비율유지*/
 	width: 960px;
 	height: 100%;
@@ -70,6 +71,7 @@ function checkStar(){
 	border-bottom: 4px solid #82ac64;
 	padding: 20px 0px 36px;
 	}
+
 </style>
 
 </head>
