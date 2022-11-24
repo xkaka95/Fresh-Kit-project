@@ -58,8 +58,10 @@ function checkStar(){
 };
 </script>
 <style>
+
 .rating { margin-top: 250px;}
 .title {
+
 margin: 0px auto;
 			/* 화면비율유지*/
 	width: 960px;
