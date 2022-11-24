@@ -1,0 +1,53 @@
+@charset "utf-8";
+/************************************************************************
+* filename : header.css
+* description : header css
+************************************************************************/
+
+
+/* BASE */
+*, *:after, *:before {-webkit-box-sizing:border-box; box-sizing:border-box;}
+html{overflow-y:scroll;}
+html.laypop{overflow-y:scroll;}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, table, th, td, input, select, textarea, button {margin:0;padding:0;word-break:break-all;letter-spacing:-0.5px;}
+
+
+dl, ul, ol, menu, li {list-style:none}
+a {color:inherit; text-decoration:none}
+a:hover,
+a:focus,
+a:active {background-color:transparent; text-decoration:none;}
+/* HIDDEN */
+.hide {display:inline-block;position:absolute;z-index:-10;width:0 !important;height:0 !important;overflow:hidden !important;font-size:medium;line-height:normal;word-break:break-all}
+
+
+/* LAYOUT - GNB */
+#head{width:100%;}
+#head:before{content:'';display:block;width:auto;}
+#head .gnb_wrap{min-width:1260px; margin:0 auto; background-color:#fff; border-bottom:1px solid #ccc; text-align: center;}
+#head .gnb_util {min-width:1260px; height:35px; padding-top:7px; background-color:#7ed438;text-align:left;}
+#head .gnb_util .util_wrap {max-width:1920px; min-width:1260px; margin:0 auto;}
+#head .gnb_util .util_wrap:after{content:'';display:table;clear:both;}
+#head .gnb_util ul {float:right; padding-right:40px}
+#head .gnb_util li {float:left;}
+#head .gnb_util li a {color:#fff; font-size:13px; line-height:21px;}
+#head .gnb_util li a:before {content:''; display:inline-block; position:relative; width:1px; height:12px; margin:0 12px; background-color:rgba(255, 255, 255, 0.2); vertical-align:middle;}
+#head .gnb_util li:first-child a:before {display:none;}
+#head .gnb_menu {position:relative; max-width:1920px; min-width:1260px; height:81px; margin:0 auto; padding-top:24px;  text-align:center}
+#head .gnb_menu .logo {position:absolute; left:40px; top:20px;}
+#head .gnb_menu .logo a {display: inline-block; width:160px; height:40px; background:url('../images/mainlogo.png') 3px 1px no-repeat; background-size:158px 40px;}
+#head .list_gmenu {display:inline-block; font-size:0; line-height:0}
+#head .list_gmenu li {display:inline-block; font-size:0; line-height:0}
+#head .list_gmenu li a {display:inline-block; padding:0 32px; color:#101010; font-weight:700; font-size:22px; line-height:32px;}
+#head .list_gmenu li .red_dot{position:relative;}
+#head .list_gmenu li .red_dot:before{content:'';position:absolute;top:0;right:0;width:6px;height:6px;background:#EE0700;border-radius:3px;}
+#head .my_gmenu {position:absolute; right:40px; top:14px;}
+#head .my_gmenu ul {float:right;}
+#head .my_gmenu li {float:left; margin-left:20px;}
+#head .my_gmenu li a {display:block;}
+#head .my_gmenu li a:before {content:'';display:block; width:32px; height:32px; margin:0 auto; background:url('../images/menu.png') no-repeat;}
+#head .my_gmenu li a .txt{display:block;margin-top:-2px;font-size:12px;line-height:20px;letter-spacing:-1px;color:#101010;}
+#head .my_gmenu li.g_od {position:relative; background: url('../images/cart.png'); background-repeat: no-repeat;}
+#head .my_gmenu li.g_od .num {position:absolute; right:4px; top:-1px; width:16px; height:16px; border-radius:8px; background-color:#FF2727; color:#fff; font-weight:700; font-size:9px; line-height:16px; text-align:center}
+#head .my_gmenu li.g_my a:before {background-position:-540px -320px}
+#head .my_gmenu li.g_od a:before {background-position:-584px -320px}
