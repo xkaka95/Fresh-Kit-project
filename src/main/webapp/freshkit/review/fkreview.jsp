@@ -182,12 +182,9 @@
 			<form method="get" name="search" action="research.jsp">
 				<table class="pull-right">
 					<tr>
-						<td><select class="form-control" name="searchField">
-								<option value="retitle">상품명</option>
-
-						</select></td>
+						
 						<td><input type="text" class="form-control"
-							placeholder="검색어 입력" name="searchText" maxlength="100"></td>
+							placeholder="검색어 입력" name="txt" maxlength="100"></td>
 						<td><button type="submit" class="btn btn-success">검색</button></td>
 					</tr>
 				</table>

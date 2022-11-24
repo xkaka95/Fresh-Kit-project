@@ -182,15 +182,17 @@ public class FkreviewDAO {
 			  String retitle = rs.getString("retitle");
 			  String reimg = rs.getString("reimg");
 			  
-			  FkreviewVO vo = new FkreviewVO(reno, no, recontents, redate, retitle, reimg);
+				
+				 FkreviewVO vo = new FkreviewVO(reno, no, recontents, redate, retitle, reimg);
+				
 
-			/*vo.setReno(reno);
-			vo.setNo(no);
-			vo.setRecontents(recontents);
-			vo.setRedate(redate);
-			vo.setRetitle(retitle);
-			vo.setReimg(reimg);
-			 */
+//			vo.setReno(reno);
+//			vo.setNo(no);
+//			vo.setRecontents(recontents);
+//			vo.setRedate(redate);
+//			vo.setRetitle(retitle);
+//			vo.setReimg(reimg);
+			 
 			list.add(vo); //리스트에 해당 인스턴스 담음
          }         
       } catch(Exception e) {

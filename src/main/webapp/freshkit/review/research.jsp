@@ -31,15 +31,7 @@
 	border-bottom: 4px solid #82ac64;
 	padding: 20px 0px 36px;
 	}
-.plz *{
-margin-left:200px;
-margin-top:30px;
-width: 500px;
-font-size: 25px;
-text-align: center;
-font-weight: 600;
 
-}
 </style>
 
 </head>
@@ -64,13 +56,13 @@ font-weight: 600;
 			</tr>
 			
 			<% 
-			String searchText = request.getParameter("txt");
-			System.out.println(searchText);
+			String txt = request.getParameter("txt");
+			System.out.println(txt);
 			
 			//System.out.println(request.getParameter("searchText"));
 			
 			FkreviewDAO dao = new FkreviewDAO();
-			ArrayList<FkreviewVO> list = dao.reSearch(searchText);
+			ArrayList<FkreviewVO> list = dao.reSearch(txt);
 			System.out.println(list);
 			
 			
