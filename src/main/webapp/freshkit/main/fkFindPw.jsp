@@ -25,6 +25,8 @@ function pwSearch(){
 	var name = document.getElementById("customername").value;
 	var id = document.getElementById("customerid").value;
 	var phone = document.getElementById("customerphone").value;
+	var regphone = /^[0-9]+/g;
+	var regid = /^[a-z]+[a-z0-9]{5,19}$/g;
 	
 	if (name.length < 1) {
 		alert("이름을 입력해주세요");
@@ -34,11 +36,22 @@ function pwSearch(){
 		alert("아이디를 입력해주세요");
 		return ;
 	}
+	if(!regid.test(id)){
+        alert("아이디는 영문으로 시작해 6~20자의 영문자 또는 숫자이어야 합니다.");
+   		return ;
+	}
 
 	if (phone.length != 11) {
 		alert("연락처를 정확하게 입력해주세요");
 		return ;
 	}
+	if(!regphone.test(phone)){
+        alert("연락처는 숫자만 입력 가능합니다.");
+        phone="";
+        
+        return ;
+    }
+	
 
 	frm.method = "get";
 	frm.action = "fkFindPwCheck.jsp";

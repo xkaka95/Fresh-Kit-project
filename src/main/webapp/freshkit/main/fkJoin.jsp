@@ -164,6 +164,7 @@ function checkForm(x){
     var male = document.getElementById("customermale").checked;
     var female = document.getElementById("customerfemale").checked;
     var phone = document.getElementById("customerphone").value;
+    var regphone = /^[0-9]+/g;
     var post = document.getElementById("customerpost").value;
     var addr = document.getElementById("customeraddr").value;
     var addrdetail = document.getElementById("customeraddrdetail").value;
@@ -223,6 +224,11 @@ function checkForm(x){
         return ;
     }else if(phone.length!=11){
         alert("연락처를 다시한번 확인해주세요.");
+        phone="";
+        
+        return ;
+    }else if(!regphone.test(phone)){
+        alert("연락처는 숫자만 입력 가능합니다.");
         phone="";
         
         return ;
