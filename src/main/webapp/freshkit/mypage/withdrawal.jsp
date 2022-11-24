@@ -19,6 +19,8 @@
 		body {
 			height: 1015px;
 		}
+		#footer{
+		clear: both;}
 
 		#side1 {
 	background-color: #d9ffb2;
