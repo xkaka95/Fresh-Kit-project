@@ -11,7 +11,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-
+<html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +34,7 @@
 	integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
 	crossorigin="anonymous"></script>
 
-</head>
+
 
 <style>
 #footer {
@@ -250,10 +250,9 @@ img {
 	border-top: 1px solid gray;
 }
 </style>
-
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript">
     function receiver_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -307,45 +306,12 @@ img {
   
     
    
-    function Checkup_payment() {
-    	 function recCheckup(){
-    	    	var txt = recphone.trim();
-    	    	
-    	    	
-    	    	if(txt==''){
-    				alert('연락처를 입력해주세요.');
-    				return ;
-    	    	}else if(txt.length!=11){
-    	            alert("연락처를 확인해주세요.");
-    	            return ;
-    	    	}
-    	    	var params = "customerphone="+txt;
-    	    	
-    	    	
-    	    	
-    	    }
-    	    
-    	    function recCheckup2(){
-    	    	var txt = $("customer_address").val().trim();    	
-    	    	
-    	    	if(txt==''){
-    				alert('배송지를 입력해주세요.');
-    				return ;
-    	    	}
-    	    	var params = "customer_address="+txt;
-    	    	
-    	    	
-    	    	
-    	    
-    	    }
-	}
    
     
  
-</script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script type="text/javascript">
+
+
+
 $(function(){
 	
 	$(".payment_card").hide();
@@ -357,9 +323,8 @@ $(function(){
 
 function creditcard(){
 	$(".payment_card").show();
-	$("#pay").attr("value","신용카드");
 	$(".payment_account").hide();
-
+	
 	
 }
 
@@ -377,16 +342,18 @@ function payaccount(){
 	$(".payment_account").show();
 	$("#pay").attr("value","계좌이체");
 		$(".payment_card").hide();
+		
 	
 }
 
 	
 
 </script>
+</head>
 <body>
 	<jsp:include page="../main/header.jsp" />
 	<section id="container">
-		<form action="orderOk.jsp">
+		<form action="orderOk.jsp" name="frm">
 			<div id="content" class="payorder_wrap">
 
 				<div class="order_fix">
@@ -436,16 +403,17 @@ function payaccount(){
 									
 									int nos = 0;
 									
-									if(obj == null){
-										response.sendRedirect("../main/fklogin.jsp");
+									if (obj == null) {
+										response.sendRedirect("../main/fkLogin.jsp");
 									}else{
 									
 									FkcustomerVO vo5 = (FkcustomerVO)obj;
 									nos = vo5.getNo();
 									}
-									/* ------------------------------------ */
+									/* ------------------------------------ */									
 									FkcustomerDAO daocu = new FkcustomerDAO();
 									FkcustomerVO vocu = daocu.selectOne(nos);
+									
 									String cuphone = vocu.getPhone();
 
 									String telcu1 = cuphone.substring(0, 3);
@@ -466,11 +434,7 @@ function payaccount(){
 										id="customer_tel_3" placeholder="0000" value="<%=telcu3%>"
 										disabled></td>
 								</tr>
-								<%
-
-								%>
 							</tbody>
-
 						</table>
 						<br> <br>
 
@@ -575,20 +539,6 @@ function payaccount(){
 										<%
 										int sum = 0;
 										
-										/* 로그인정보 가져오기 ------------------------------------- */
-										Object obj2 = session.getAttribute("vo");
-										
-										int no = 0;
-										
-										if(obj2 == null){
-											response.sendRedirect("../main/fklogin.jsp");
-										}else{
-										
-										FkcustomerVO vo6 = (FkcustomerVO)obj2;
-										no = vo6.getNo();
-										}
-										/* ------------------------------------ */
-										
 										String[] price = request.getParameterValues("pprice");
 										int[] pprice = new int[price.length];
 										
@@ -596,7 +546,7 @@ function payaccount(){
 										int[] pno = new int[ppno.length];
 										
 										FkcartDAO dao = new FkcartDAO();
-										ArrayList<FkcartVO> list = dao.selectAll2(no);
+										ArrayList<FkcartVO> list = dao.selectAll2(nos);
 										FkproductDAO dao2 = new FkproductDAO();
 										FkproductVO vo2 = null;
 										
@@ -674,7 +624,7 @@ function payaccount(){
 							<table class="table">
 
 								<tbody>
-									<tr>
+									<tr> 
 
 										<td><button type="button"
 												class="btn btn-outline-dark btn-lg" style="width:167.25px;" onclick="creditcard()">신용카드
@@ -738,9 +688,9 @@ function payaccount(){
 											aria-label="Default select example" id="card2" onchange="creditcard2()">
 												<option selected>할부선택</option>
 												<option value="일시불">일시불</option>
-												<option value="1개월">1개월</option>
 												<option value="2개월">2개월</option>
 												<option value="3개월">3개월</option>
+												<option value="4개월">4개월</option>
 										</select></td>
 									</tr>
 
@@ -767,8 +717,8 @@ function payaccount(){
 
 						</div>
 						<div class="payment_move">
-							<a href="fkorderOk.jsp"><input type="submit" value="결제하기"
-								class="btn_payment_move"></a>
+							<input type="button" value="결제하기"
+								class="btn_payment_move" onclick="checkuppayment()">
 						</div>
 					</div>
 				</div>
@@ -778,7 +728,7 @@ function payaccount(){
 	<jsp:include page="../main/footer.jsp" />
 
 
-	<script>
+<script>
 function customeraddr(){
 
 	<%String name = vocu.getName();
@@ -815,7 +765,70 @@ if (addr.contains("/")) {
 	document.getElementById('receiver_detailAddress').value = '<%=detailaddr%>';
 
 		}
-	</script>
+		
+function checkuppayment() {
+	
+	
+	
+	var txt =  document.getElementById('receiver_tel_2').value;
+	console.log(txt);
+	
+	var customer = document.getElementById('receiver_detailAddress').value;
+	
+	var pay = document.getElementById('pay').value;
+	var pay2 = document.getElementById('pay2').value;
+	
+	console.log(pay);
+	console.log(pay2);
+	
+	if(txt==''){
+		alert('연락처를 입력해주세요.');
+		return ;
+	}else if(customer==""){
+		alert('배송지를 입력해주세요.');
+		return ;
+	}else if(pay==""){
+		alert('결제수단을 선택해주세요.');
+		return ;
+	}else if(pay=="카드 선택"){
+		alert('결제수단을 선택해주세요.');
+		return ;
+	}else if(pay=="우리카드"&&pay2==""){
+		alert('할부기간을 선택해주세요.');		
+		return ;	
+	}else if(pay=="하나카드"&&pay2==""){
+		alert('할부기간을 선택해주세요.');		
+		return ;	
+	}else if(pay=="삼성카드"&&pay2==""){
+		alert('할부기간을 선택해주세요.');		
+		return ;	
+	}else if(pay=="수협카드"&&pay2==""){
+		alert('할부기간을 선택해주세요.');		
+		return ;	
+	}else if(pay=="우리카드"&&pay2=="할부선택"){
+		alert('할부기간을 선택해주세요.');		
+		return ;	
+	}else if(pay=="하나카드"&&pay2=="할부선택"){
+		alert('할부기간을 선택해주세요.');		
+		return ;	
+	}else if(pay=="삼성카드"&&pay2=="할부선택"){
+		alert('할부기간을 선택해주세요.');		
+		return ;	
+	}else if(pay=="수협카드"&&pay2=="할부선택"){
+		alert('할부기간을 선택해주세요.');		
+		return ;	
+	}else{	
+	
+		var frm = document.frm;
+
+		document.frm.action="orderOk.jsp";
+		document.frm.method="get";
+		document.frm.submit();
+	}
+}
+
+
+</script>
 </body>
 
 </html>

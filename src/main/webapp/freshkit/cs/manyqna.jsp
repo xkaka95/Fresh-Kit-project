@@ -19,6 +19,10 @@
 
 		.cs_wrap {
 			margin: 0px auto;
+					/* 화면비율유지*/
+	width: 960px;
+	height: 100%;
+	margin: 0 auto;
 		}
 		
 		.tabs{
@@ -30,7 +34,7 @@
 			font-size: 16px;
 			line-height: 24px;
 			float: left;
-			margin-left: 250px;
+			
 			width: 300px;
 		}
 		
@@ -98,7 +102,7 @@
 							aria-expanded="true" aria-controls="collapseOne">Q. 외국이나
 							해외에 거주하는 사람도 배송받을 수 있나요?</button>
 					</h2>
-					<div id="collapseOne" class="accordion-collapse collapse show"
+					<div id="collapseOne" class="accordion-collapse collapse "
 						aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 						<div class="accordion-body">A. 서울, 경기, 인천, 청주, 대전, 천안, 아산,
 							세종 (일부지역 제외)에만 새벽 배송되고 있으며, 신선 식품으로 해외 배송은 불가합니다.</div>
@@ -154,7 +158,7 @@
 							aria-expanded="true" aria-controls="collapseFour">Q. 주문후
 							결제 방식을 변경할 수 있나요?</button>
 					</h2>
-					<div id="collapseFour" class="accordion-collapse collapse show"
+					<div id="collapseFour" class="accordion-collapse collapse "
 						aria-labelledby="headingFour" data-bs-parent="#accordionExample">
 						<div class="accordion-body">
 							A. 결제 방식은 주문마감(배송일 전일 오전 7시)전까지만 카드로 결제한 금액에 대해 카드 변경만 가능합니다. <br>카드
@@ -272,7 +276,7 @@
 							aria-expanded="true" aria-controls="collapseTen">Q. 보냉제는
 							100% 물인가요?</button>
 					</h2>
-					<div id="collapseTen" class="accordion-collapse collapse show"
+					<div id="collapseTen" class="accordion-collapse collapse "
 						aria-labelledby="headingTen" data-bs-parent="#accordionExample">
 						<div class="accordion-body">
 							A. 프레시킷은 지구를 위한 첫 걸음으로<br> 아이스팩에 화학제품을 넣지 않고, 100% 물을 넣어

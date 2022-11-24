@@ -23,8 +23,34 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script type="text/javascript">
+//단일이미지 미리보기
+
+function readURL(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      document.getElementById('preview').src = e.target.result;
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    document.getElementById('preview').src = "";
+	  }
+	}
+window.onload=function(){
+	
+	var userid = document.getElementById("userid").value;
+	var id = '<%=(String)session.getAttribute("id")%>'
+	console.log(userid);
+	console.log(id);
+	if(userid!=id){
+		alert("본인이 쓴 글만 접근하실 수 있습니다.");
+		location.href="fkreview.jsp";
+	}
+	
+}
 </script>
 <style>
+.rating { margin-top: 280px;}
 .title {
 	margin-left: 300px;
 	margin-bottom: 50px;
@@ -67,7 +93,7 @@
 							<div class="jull2_2">
 							<input type="hidden" name="reno" value="<%=vo.getReno() %>" />
 							<input type="hidden" name="no" value="<%= vo.getNo() %>" />
-							<input type="text" disabled="disabled" style="width:450px; height:50px;" name="writer" id="" value="<%= vo2.getId() %>" />
+							<input type="text" disabled="disabled" style="width:450px; height:50px;" name="writer" id="userid" value="<%= vo2.getId() %>" />
 								
 							</div>
 						</div>
@@ -90,19 +116,7 @@
 					</div>
 				</div>
 
-				<div class="jull">
-					<div class="jull1">
-						<label class="julltext1" id="reimg">이미지</label> 
-					</div>
-					<div class="jull2">
-						<div class="jull2_1">
-							<div class="jull2_2">
-							<input type="file" name="reimg" id="reimg" />
-							
-							</div>
-						</div>
-					</div>
-				</div>
+				
 				
 
 				<div class="jull">
@@ -118,8 +132,22 @@
 						</div>
 					</div>
 				</div>
-				
-			
+				<br><br><br><br><br>
+			<div class="jull">
+					<div class="jull1">
+						<label class="julltext1" id="reimg">이미지 수정</label> 
+					</div>
+					<div class="jull2">
+						<div class="jull2_1">
+							<div class="jull2_2">
+							
+							<input style="display: block;"type="file" name="reimg" id="reimg" onchange="readURL(this);"> 
+							<img src="/fresh/freshkit/upload/<%=vo.getReimg() %>" id="preview" style="width:350px;height:300px;"/>  
+							
+							</div>
+						</div>
+					</div>
+				</div>
 				
 			<table class="rating">
 				<tr>

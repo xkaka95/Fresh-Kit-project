@@ -1,3 +1,6 @@
+<%@page import="kr.co.freshkit.vo.FkcodeVO"%>
+<%@page import="kr.co.freshkit.dao.FkcodeDAO"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="kr.co.freshkit.vo.FkproductVO"%>
 <%@page import="kr.co.freshkit.dao.FkproductDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,11 +9,12 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>main.jsp</title>
+	<title>FRESHKIT</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="../css/header.css">
 	<link rel="stylesheet" href="../css/footer.css">
+	<link rel="shortcut icon" href="../images/mainlogo_footer.png">
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap');
@@ -287,39 +291,27 @@
             <div>
                 <table style="width: 82%;" class="table-borderless">
                     <tr>
-                        <th id="weekBest">베스트메뉴</th>
+                        <th id="weekBest">MD's 추천메뉴</th>
                     </tr>
                     <%
                     FkproductDAO dao = new FkproductDAO();
-            		FkproductVO vo = dao.selectOne(1);       	
-            		FkproductVO vo2 = dao.selectOne(2);       	
-            		FkproductVO vo3 = dao.selectOne(3);       	
-            		FkproductVO vo4 = dao.selectOne(4);       	
-            		FkproductVO vo5 = dao.selectOne(5);       	
-            		FkproductVO vo6 = dao.selectOne(6);       	
+            		FkproductVO vo = dao.selectOne(7);       	
+            		FkproductVO vo2 = dao.selectOne(11);       	
+            		FkproductVO vo3 = dao.selectOne(14);       	
+            		FkproductVO vo4 = dao.selectOne(17);       	
+            		FkproductVO vo5 = dao.selectOne(24);       	
+            		FkproductVO vo6 = dao.selectOne(25);       	
                     
-            		String theme = null;
+            		FkcodeDAO dao2 = new FkcodeDAO();
+            		FkcodeVO vo11 = dao2.selectOne2(vo.getHsno());
+            		FkcodeVO vo12 = dao2.selectOne2(vo2.getHsno());
+            		FkcodeVO vo13 = dao2.selectOne2(vo3.getHsno());
+            		FkcodeVO vo14 = dao2.selectOne2(vo4.getHsno());
+            		FkcodeVO vo15 = dao2.selectOne2(vo5.getHsno());
+            		FkcodeVO vo16 = dao2.selectOne2(vo6.getHsno());
             		
-            		if(vo.getHsno()==100){
-            			theme = "한식";
-            		}else if(vo.getHsno()==200){
-            			theme = "양식";
-            		}else if(vo.getHsno()==300){
-            			theme = "중식/일식";
-            		}else if(vo.getHsno()==400){
-            			theme = "동남아";
-            		}else if(vo.getHsno()==500){
-            			theme = "분식/야식";
-            		}else if(vo.getHsno()==600){
-            			theme = "샐러드";
-            		}else if(vo.getHsno()==700){
-            			theme = "디저트";
-            		}else if(vo.getHsno()==800){
-            			theme = "반찬";
-            		}else if(vo.getHsno()==900){
-            			theme = "키즈";
-            		}
-            		
+
+            		DecimalFormat formatter = new DecimalFormat("###,###");
                     %>
                     <tr>
                         <td><a href="../menu/fkproductDetail.jsp?pno=<%=vo.getPno()%>"><img src="<%= vo.getPimg1() %>" alt=""></a></td>
@@ -327,9 +319,9 @@
                         <td><a href="../menu/fkproductDetail.jsp?pno=<%=vo3.getPno()%>"><img src="<%= vo3.getPimg1() %>" alt=""></a></td>
                     </tr>
                     <tr>
-                        <td><p><%=theme %></p><p class="fs-5 fw-bold"><%= vo.getPname() %></p><p><%= vo.getPrice() %>원</p></td>
-                        <td><p><%=theme %></p><p class="fs-5 fw-bold"><%= vo2.getPname() %></p><p><%= vo2.getPrice() %>원</p></td>
-                        <td><p><%=theme %></p><p class="fs-5 fw-bold"><%= vo3.getPname() %></p><p><%= vo3.getPrice() %>원</p></td>
+                        <td><p><%=vo11.getHsname() %></p><p class="fs-5 fw-bold"><%= vo.getPname() %></p><p><%=formatter.format(vo.getPrice())%>원</p></td>
+                        <td><p><%=vo12.getHsname() %></p><p class="fs-5 fw-bold"><%= vo2.getPname() %></p><p><%=formatter.format(vo2.getPrice())%>원</p></td>
+                        <td><p><%=vo13.getHsname() %></p><p class="fs-5 fw-bold"><%= vo3.getPname() %></p><p><%= formatter.format(vo3.getPrice())%>원</p></td>
                     </tr>
                     <tr>
                         <td><a href="../menu/fkproductDetail.jsp?pno=<%=vo4.getPno()%>"><img src="<%= vo4.getPimg1() %>" alt=""></a></td>
@@ -337,9 +329,9 @@
                         <td><a href="../menu/fkproductDetail.jsp?pno=<%=vo6.getPno()%>"><img src="<%= vo6.getPimg1() %>" alt=""></a></td>
                     </tr>
                     <tr>
-                        <td><p><%=theme %></p><p class="fs-5 fw-bold"><%= vo4.getPname() %></p><p><%= vo4.getPrice() %>원</p></td>
-                        <td><p><%=theme %></p><p class="fs-5 fw-bold"><%= vo5.getPname() %></p><p><%= vo5.getPrice() %>원</p></td>
-                        <td><p><%=theme %></p><p class="fs-5 fw-bold"><%= vo6.getPname() %></p><p><%= vo6.getPrice() %>원</p></td>
+                        <td><p><%=vo14.getHsname() %></p><p class="fs-5 fw-bold"><%= vo4.getPname() %></p><p><%= formatter.format(vo4.getPrice())%>원</p></td>
+                        <td><p><%=vo15.getHsname() %></p><p class="fs-5 fw-bold"><%= vo5.getPname() %></p><p><%=formatter.format(vo5.getPrice())%>원</p></td>
+                        <td><p><%=vo16.getHsname() %></p><p class="fs-5 fw-bold"><%= vo6.getPname() %></p><p><%= formatter.format(vo6.getPrice())%>원</p></td>
                     </tr>
                 </table>
             </div>

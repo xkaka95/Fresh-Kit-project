@@ -4,6 +4,17 @@
 <%@page import="kr.co.freshkit.dao.FkreviewDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	
+		String num = request.getParameter("reno");
+		if(num != null) {
+			int reno = Integer.parseInt(num);
+			FkreviewDAO dao = new FkreviewDAO();
+			FkreviewVO vo = dao.selectOne(reno);
+			
+			FkcustomerDAO dao2 = new FkcustomerDAO(); // fkcustomer 테이블에 fkreview테이블에서 가져온 vo값 넣기
+			FkcustomerVO vo2 = dao2.selectOne(vo.getNo());
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +35,26 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script type="text/javascript">
+function deleteaccess(){
+	var userid = document.getElementById("userid").value;
+	var id = '<%=(String)session.getAttribute("id")%>'
+	console.log(userid);
+	console.log(id);
+	if(userid!=id){
+		alert("본인이 쓴 글만 접근하실 수 있습니다.");
+		location.href="fkreview.jsp";
+	}else{
+		location.href="fkdeleteOk.jsp?reno=<%=vo.getReno() %>";
+	}
+}
+
+function checkStar(){
+	var rstar = "";
+	var rstar = $("input[name=rstar]:checked").val();
+	 
+	$("#view").empty();
+	$("#view").append(rstar);
+};
 </script>
 <style>
 .rating { margin-top: 250px;}
@@ -41,17 +72,7 @@
 <body>
 
 <jsp:include page="../main/header.jsp"/>
-	<%
 	
-		String num = request.getParameter("reno");
-		if(num != null) {
-			int reno = Integer.parseInt(num);
-			FkreviewDAO dao = new FkreviewDAO();
-			FkreviewVO vo = dao.selectOne(reno);
-			
-			FkcustomerDAO dao2 = new FkcustomerDAO(); // fkcustomer 테이블에 fkreview테이블에서 가져온 vo값 넣기
-			FkcustomerVO vo2 = dao2.selectOne(vo.getNo());
-	%>
 		<h2 class="title">상세</h2>
 	<div class="container1">
 		<div class="container1-1">
@@ -67,7 +88,7 @@
 					<div class="jull2">
 						<div class="jull2_1">
 							<div class="jull2_2">
-								<input type="text" disabled="disabled" style="width:450px; height:50px;" name="no" id="" value="<%= vo2.getId() %>" />
+								<input type="text" disabled="disabled" style="width:450px; height:50px;" name="no" id="userid" value="<%= vo2.getId() %>" />
 								
 							</div>
 						</div>
@@ -116,13 +137,27 @@
 						<div class="jull2_1">
 							<div class="jull2_2">
 							
-					<img src="/fresh/freshkit/upload/<%=vo.getReimg() %>" style="width:350px; height:300px;" alt=""/>
+					<img src="/freshkit/freshkit/upload/<%=vo.getReimg() %>" style="width:350px; height:300px;" alt=""/>
 						
 							</div>
 						</div>
 					</div>
 				</div>
 				
+				<%-- <table >
+				<tr>
+			<td>평점</td>
+			<td>
+			<div id="view"></div>
+				<%
+				String rstar = request.getParameter("rstar");
+				%>
+				<h3> <%= rstar%> </h3>
+				
+				</td>
+			</tr>
+				</table> --%>
+
 			<table class="rating">
 				<tr>
 			<td>평점</td>
@@ -143,7 +178,7 @@
 				<div class="btn">
 					<a href="fkreview.jsp"><input type="button" class="btn btn-light" value="목록" /></a>
 					<a href="fkmodify.jsp?reno=<%=vo.getReno() %>"><input type="button" class="btn btn-success" value="수정"/></a>
-					<a href="fkdeleteOk.jsp?reno=<%=vo.getReno() %>"><input type="button" class="btn btn-warning" value="삭제" /></a>
+					<input type="button" class="btn btn-warning" onclick="deleteaccess();" value="삭제" /></a>
 				</div>
 				</div>
 				</form>
@@ -151,6 +186,7 @@
 				<%
 			}
 				%>
+				
 			</div>
 		</div>
 	

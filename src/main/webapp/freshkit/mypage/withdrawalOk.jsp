@@ -37,10 +37,11 @@
 						
 						dao.close();
 						
+						session.invalidate();
 						%>
 						<script>
 								alert("회원탈퇴가 완료되었습니다.");
-								location.href= "main.jsp";
+								location.href= "../main/main.jsp";
 						</script>
 						<%	
 						

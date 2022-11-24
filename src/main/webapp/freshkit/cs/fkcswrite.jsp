@@ -1,3 +1,4 @@
+<%@page import="kr.co.freshkit.dao.FkcustomerDAO"%>
 <%@page import="kr.co.freshkit.vo.FkcsVO"%>
 <%@page import="kr.co.freshkit.vo.FkcustomerVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -80,13 +81,15 @@ $(function(){
 		FkcustomerVO vo5 = (FkcustomerVO)obj;
 		no = vo5.getNo();
 		
+		FkcustomerDAO dao2 = new FkcustomerDAO(); // fkcustomer 테이블에 fkreview테이블에서 가져온 vo값 넣기
+		FkcustomerVO vo2 = dao2.selectOne(vo5.getNo());
 		/* ------------------------------------ */
 		%>
 			<tr>
-				<th>회원번호</th>
+				<th>아이디</th>
 				<td>
-				<input type="text" autofocus="autofocus" name="no" id="" value="<%=no %>" style="border:none;" readonly />
-				<!-- <input type="hidden" name="write" id="" value="" /> -->
+				<input type="text" autofocus="autofocus" name="id" id="" value="<%=vo2.getId() %>" style="border:none;" readonly />
+				<input type="hidden" name="no" id="no" value="<%=vo2.getNo() %>" />
 				</td>
 			</tr>
 			<tr>

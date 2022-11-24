@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="kr.co.freshkit.dao.FkcsDAO"%>
 <%@page import="kr.co.freshkit.dao.FkcustomerDAO"%>
 <%@page import="kr.co.freshkit.vo.FkcustomerVO"%>
@@ -29,7 +31,6 @@
 @import
 	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500&display=swap')
 	;
-
 
 
 .title {
@@ -143,12 +144,18 @@ a {
 				<%
 				ArrayList<FkcsVO> list = dao.selectAll(startNo, endNo);
 				for (FkcsVO vo : list) {
+					//날짜형식
+					Date date = new Date();
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+					
+					FkcustomerDAO dao2 = new FkcustomerDAO();
+					FkcustomerVO vo2 = dao2.selectOne(vo.getNo());
 				%>
 				<tr>
 					<td><%=vo.getCsno()%></td>
 					<td><a href="fkcsdetail.jsp?csno=<%=vo.getCsno()%>"><%=vo.getCstitle()%></a></td>
-					<td><%=vo.getCsdate()%></td>
-					<td><%=vo.getNo()%></td>
+					<td><%=sdf.format(vo.getCsdate())%></td>
+					<td><%=vo2.getId()%></td>
 				</tr>
 				<%
 				}

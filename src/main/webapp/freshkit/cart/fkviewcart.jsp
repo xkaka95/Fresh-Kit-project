@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="kr.co.freshkit.vo.FkcustomerVO"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="java.util.Arrays"%>
@@ -23,6 +24,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>freshkit</title>
+    <link rel="shortcut icon" href="../images/mainlogo_footer.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="header.css">
@@ -46,7 +48,7 @@
         }
 
         #content {
-            padding: 52px 0 140px;
+            padding: 30px 0 70px;
         }
 
         .pd_mu_wrap .olki_list_wrap .top_sec {
@@ -225,7 +227,7 @@
             margin: 30px 0 50px 50px;
             width: 960px;
             text-align: center;
-            margin-top: 150px;
+            margin-top: 50px;
             border-top: 2px solid black;
             border-bottom: 1px solid rgb(170, 170, 170);
         }
@@ -242,12 +244,16 @@
 
         }
 
-        .big_table_price {
+        .big_table_price *{
             font-size: 50px;
+            font-family: "맑은고딕";
+            text-align: center;
+            font-weight: 600;
         }
 
         .big_price_red {
             color: red;
+            text-align: right;
         }
 
         .button_all {
@@ -265,11 +271,13 @@
         .big_cart_table .plus{
             font-size: 35px;
         }
+        
         /*==========================다른============================================*/
 		
 		#cart_pno {
 			display: none;
 		}
+		
 
        
     </style>
@@ -349,12 +357,15 @@
 									 // 임시 갯수
 									
 									FkcartDAO daosum = new FkcartDAO();
-
+									DecimalFormat formatter = new DecimalFormat("###,###");
+								  
 									for(FkcartVO vo : list){
 										cnt++;
 										vo2 = dao2.selectOne2(vo.getPno());
 										
-										System.out.println(vo2.getPno());							
+										System.out.println(vo2.getPno());	
+										
+										
 								%>
 								
                                     <tr class="table_null"></tr>
@@ -384,13 +395,13 @@
                                         <script>
                                     
                                         </script>
-                                        <td rowspan="2" class="pro_count_payment"><input type="hidden" name="" id="pprice<%=cnt+1000 %>" value="<%=(Math.round(vo2.getPrice() * (1 - vo2.getDcratio() * 0.01)))%>"/><input type="hidden" id="pprice<%=cnt %>" value="<%=(Math.round(vo2.getPrice() * (1 - vo2.getDcratio() * 0.01)))%>"/>
-                                        <input type="text" name="pprice" id="pprice<%=vo2.getPno() %>" style="width:70px;height:30px;border:none;" readonly value="<%=(Math.round(vo2.getPrice() * (1 - vo2.getDcratio() * 0.01)))%>"/></td>
+                                        <td rowspan="2" class="pro_count_payment"><input type="hidden" name="" id="pprice<%=cnt+1000 %>" value="<%=(Math.round(vo2.getPrice() * (1 - vo2.getDcratio() * 0.01))) %>"/><input type="hidden" id="pprice<%=cnt %>" value="<%=(Math.round(vo2.getPrice() * (1 - vo2.getDcratio() * 0.01)))%>"/>
+                                        <input type="text" name="pprice" id="pprice<%=vo2.getPno() %>" style="width:50px;height:30px;border:none;text-align:right;" readonly value="<%=(Math.round(vo2.getPrice() * (1 - vo2.getDcratio() * 0.01))) %>"/>원</td>
                                     </tr>
 
                                     <tr>
 
-                                        <td class="price_left_price"><%=vo2.getPrice() %>원</td>
+                                        <td class="price_left_price"><%=formatter.format(vo2.getPrice())  %>원</td>
 
                                     </tr>
                                     <tr class="table_null"></tr>
@@ -419,22 +430,22 @@
                                         <tr class="big_table_th">
 										
                                             <td>총 상품금액</td>
-                                            <td rowspan="2" class="plus" style="padding-top:42px">-</td>
-                                            <td>총 할인금액</td>
                                             <td rowspan="2" class="plus" style="padding-top:42px">+</td>
+                                            
+                                           
                                             <td>총 배송비</td>
                                             <td rowspan="2" class="plus" style="padding-top:42px">=</td>
-                                            <td>총 결제예정금액</td>
+                                            <td> 총 결제예정금액</td>
 
                                         </tr>
 
 
                                         <tr class="big_table_price">
-                                            <td><input type="text" name="" id="sum2" value="" style="width:180px;height:50px;border:none;" readonly/>원<input type="hidden" name="" id="sum22" value=""/><input type="hidden" name="" id="sum222" /></td>
+                                            <td class="price_won"><input type="text" name="" id="sum2" value="" style="width:180px;height:50px;border:none;" readonly/>원<input type="hidden" name="" id="sum22" value=""/><input type="hidden" name="" id="sum222" /></td>
 
-                                            <td><input type="text" name="" id="dc" style="width:100px;height:50px;border:none;" value="0" readonly/>원</td>
+                                            
 
-                                            <td><input type="text" name="" id="express" style="width:100px;height:50px;border:none;" value="0" readonly/>원</td>
+                                            <td class="price_won"><input type="text" name="" id="express" style="width:100px;height:50px;border:none;" value="0" readonly/>원</td>
                                             
                                             <td class="big_price_red"><input type="text" name="finalSum" id="sum3" value="" style="width:180px;height:50px;color:red;border:none;" readonly/>원</td>
 
@@ -448,9 +459,9 @@
                             </div>
 
                             <div class="button_all ">
-                                <button type="button" class="btn btn-outline-dark btn-lg" disabled>
-                                    선물하기
-                                </button>
+                                <a href="../menu/menu.jsp"><button type="button" class="btn btn-outline-dark btn-lg">
+                                    메뉴로가기
+                                </button></a>
 
                                 <!-- <button type="button" class="btn btn-outline-dark btn-lg" id="selOrder">
                                     선택주문하기

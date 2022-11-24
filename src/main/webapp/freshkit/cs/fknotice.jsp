@@ -16,6 +16,11 @@
 		
 		.cs_wrap {
 			margin: 0px auto;
+			/* 화면비율유지*/
+	width: 960px;
+	height: 100%;
+	margin: 0 auto;
+			
 		}
 		
 		.tabs{
@@ -27,7 +32,7 @@
 			font-size: 16px;
 			line-height: 24px;
 			float: left;
-			margin-left: 250px;
+			
 			width: 300px;
 		}  
 		.notice{
@@ -101,7 +106,7 @@
 							aria-expanded="true" aria-controls="collapseOne">SC 제일은행
 							체크카드 결제 서비스 일시중단 안내</button>
 					</h2>
-					<div id="collapseOne" class="accordion-collapse collapse show"
+					<div id="collapseOne" class="accordion-collapse collapse "
 						aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 						<div class="accordion-body">
 							안녕하세요.<br> 프레시킷담당자입니다.<br> <br> SC제일은행 시스템 작업에 따른
@@ -170,7 +175,7 @@
 							1일 (화) 03:00 <br> - 내용 : 해당 시간 동안 주문취소, 배송지 및 배송예정일 변경 불가 <br>
 							<br> 작업 종료 후에는 주문취소 및 배송지 변경 가능하여, 새로고침 후 이용 바랍니다. <br>
 							<br> * 서비스 작업 영향에 따라 작업시간은 변동될 수 있습니다. <br> <br>
-							더욱 편리하고 안정적인 서비스를 제공하는 쿡킷이 되겠습니다. <br>감사합니다.
+							더욱 편리하고 안정적인 서비스를 제공하는 프레시킷이 되겠습니다. <br>감사합니다.
 						</div>
 					</div>
 				</div>
@@ -178,26 +183,26 @@
 					<h2 class="accordion-header" id="headingFive">
 						<button class="accordion-button collapsed" type="button"
 							data-bs-toggle="collapse" data-bs-target="#collapseFive"
-							aria-expanded="false" aria-controls="collapseFive">쿡킷
+							aria-expanded="false" aria-controls="collapseFive">프레시킷
 							이메일 시스템 점검 안내 [10.22(토) 20:00~10.23(일) 06:00]</button>
 					</h2>
 					<div id="collapseFive" class="accordion-collapse collapse"
 						aria-labelledby="headingFive" data-bs-parent="#accordionExample">
 						<div class="accordion-body">
-							안녕하세요. <br>쿡킷 담당자입니다. <br>보다 나은 서비스 제공을 위해 아래와 같이 이메일
-							시스템 점검이 진행될 예정입니다. <br>해당 점검 시간에는 쿡킷 이메일이 미발송 되오니 고객님의 너그러운
+							안녕하세요. <br>프레시킷 담당자입니다. <br>보다 나은 서비스 제공을 위해 아래와 같이 이메일
+							시스템 점검이 진행될 예정입니다. <br>해당 점검 시간에는 프레시킷 이메일이 미발송 되오니 고객님의 너그러운
 							양해 부탁 드립니다. <br>
 							<br>- 점검 일시 : 2022.10.22(토) 20:00 ~ 10.23(일) 06:00<br>
-							- 점검 내용 : 쿡킷 이메일 시스템 점검 <br>- 점검 영향 : 시스템 작업 시간 내 이메일 발송 불가
+							- 점검 내용 : 프레시킷 이메일 시스템 점검 <br>- 점검 영향 : 시스템 작업 시간 내 이메일 발송 불가
 							<br>
 							<br>* 서비스 작업 영향에 따라 작업 시간은 변동 될 수 있습니다. <br>
-							<br>더욱 편리하고 안정적인 서비스를 제공하는 쿡킷이 되겠습니다.<br> 감사합니다.
+							<br>더욱 편리하고 안정적인 서비스를 제공하는 프레시킷이 되겠습니다.<br> 감사합니다.
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
+</div>
 <jsp:include page="../main/footer.jsp"/>
 
 </body>

@@ -57,8 +57,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		return ick; 
 		
@@ -84,8 +82,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		return isOk; 
 		
@@ -110,8 +106,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		return isOk; 
 		
@@ -145,8 +139,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		
 		return vo;
@@ -173,8 +165,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		
 		return fkpw;
@@ -199,8 +189,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		
 	}
@@ -231,8 +219,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		
 		return vo;
@@ -273,8 +259,6 @@ public class FkcustomerDAO {
 			} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		return list;
 		
@@ -343,8 +327,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		return vo;
 	}
@@ -376,8 +358,6 @@ public class FkcustomerDAO {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} finally {
-				close();
 			}
 			
 		  
@@ -409,8 +389,6 @@ public class FkcustomerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			close();
 		}
 		
 	}
@@ -455,9 +433,7 @@ public class FkcustomerDAO {
 			// TODO Auto-generated catch block
 			System.out.println("삭제 실패");
 			e.printStackTrace();
-		} finally {
-			close();
-		}     	
+		}   	
 		
 	}
 	//아이디,패스워드로 삭제
@@ -496,8 +472,6 @@ public class FkcustomerDAO {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} finally {
-				close();
 			}
 			return row;
 		}

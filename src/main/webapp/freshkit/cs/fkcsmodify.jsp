@@ -1,9 +1,19 @@
+<%@page import="kr.co.freshkit.dao.FkcustomerDAO"%>
 <%@page import="kr.co.freshkit.dao.FkcsDAO"%>
 <%@page import="kr.co.freshkit.vo.FkcsVO"%>
 <%@page import="kr.co.freshkit.vo.FkcustomerVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%
+	String num = request.getParameter("csno");
+	if (num != null) {
+		int csno = Integer.parseInt(num);
+		FkcsDAO dao = new FkcsDAO();
+		FkcsVO vo = dao.selectOne(csno);
+	
+		FkcustomerDAO dao2 = new FkcustomerDAO(); // fkcustomer 테이블에 fkreview테이블에서 가져온 vo값 넣기
+		FkcustomerVO vo2 = dao2.selectOne(vo.getNo());
+	%>
 
 <!DOCTYPE html>
 <html>
@@ -51,14 +61,27 @@
 
 </style>
 <script src="../lang/summernote-ko-KR.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script type="text/javascript">
-	$(function() {
+	$(function(){
 
 		$('#summernote').summernote({
 			lang : "ko-KR"
 		});
 
-	})
+	});
+	
+window.onload=function(){
+	
+	var userid = '<%=vo2.getId()%>'
+	var id = '<%=(String)session.getAttribute("id")%>'
+	console.log(userid);
+	console.log(id);
+	if(userid!=id){
+		alert("본인이 쓴 글만 접근하실 수 있습니다.");
+		location.href="fkcs.jsp";
+	}
+}
 </script>
 
 
@@ -69,20 +92,16 @@
 
 	<jsp:include page="../main/header.jsp" />
  	
- 	<%
-	String num = request.getParameter("csno");
-	if (num != null) {
-		int csno = Integer.parseInt(num);
-		FkcsDAO dao = new FkcsDAO();
-		FkcsVO vo = dao.selectOne(csno);
-		
+ 	
 	
-	%>
-
+		
+		
+		
+		
 	<div class="cs_wrap">
 		<h2 class="title">MY QnA 수정</h2>
 		
-
+		
 			<div class="container">
 				<form action="fkcsmodifyOk.jsp" method="get">
 					<table class="table table-striped">
@@ -94,10 +113,11 @@
 							</td>
 						</tr>
 						<tr>
-							<th>회원번호</th>
+							<th>아이디</th>
 							<td>
 							<input type="hidden" name="no" value="<%=vo.getNo() %>" />
-							<input type="text" disabled="disabled" name="no" id="" value="<%=vo.getNo()%>" />
+							<input type="hidden" name="csno" value="<%=vo.getCsno() %>" />
+							<input type="text" disabled="disabled" name="no" id="" value="<%=vo2.getId() %>" />
 							</td>
 						</tr>
 						<tr>
@@ -121,6 +141,7 @@
 	</div>
 <%
 	}
+
 	
 %>
 

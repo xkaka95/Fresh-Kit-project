@@ -14,6 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="shortcut icon" href="../images/mainlogo_footer.png">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
@@ -25,15 +26,13 @@
 		String nono = request.getParameter("pno");
 		int pno = Integer.parseInt(nono);
 		
-		out.println(pno);
-		
 		/* 로그인정보 가져오기 ------------------------------------- */
 		Object obj = session.getAttribute("vo");
 		
 		int no = 0;
 		
 		if(obj == null){
-			response.sendRedirect("../main/fklogin.jsp");
+			response.sendRedirect("../main/fkLogin.jsp");
 		}else{
 		
 		FkcustomerVO vo5 = (FkcustomerVO)obj;

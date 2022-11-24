@@ -1,3 +1,5 @@
+<%@page import="kr.co.freshkit.vo.FkcustomerVO"%>
+<%@page import="kr.co.freshkit.dao.FkcustomerDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.io.PrintWriter"%>
@@ -20,6 +22,23 @@
 .review_box {margin-left:300px; width:1000px;}
 .fkreview_wrap {margin-left:350px; margin-bottom:30px;}
 .fkreview_wrap >img {width:300px; height: 400px; margin-right:250px;}
+.title {
+	margin-left: 300px;
+	margin-bottom: 50px;
+	font-weight: bolder;
+	width: 1000px;
+	border-bottom: 4px solid #82ac64;
+	padding: 20px 0px 36px;
+	}
+.plz *{
+margin-left:200px;
+margin-top:30px;
+width: 500px;
+font-size: 25px;
+text-align: center;
+font-weight: 600;
+
+}
 </style>
 
 </head>
@@ -29,33 +48,45 @@
 	
 <br><br>
 
-	
+
+	<h2 class="title">FreshKit 다양한 후기를 만나보세요!</h2>
 		<div class="review_box">
-	
+			
+		
 		<table class="table table-sm">
 	
 			<tr>
 				<th>리뷰번호</th>
-				<th>고객번호</th>
-				<th>Product</th>
-				<th>Date</th>
+				<th>아이디</th>
+				<th>상품명</th>
+				<th>작성일</th>
 			</tr>
 			
 			<% 
-			FkreviewDAO dao2 = new FkreviewDAO();
-			System.out.println(request.getParameter("searchText"));
-			ArrayList<FkreviewVO> list2 = dao2.reSearch(request.getParameter("searchText"));
-			System.out.println(list2);
-			for (FkreviewVO vo2 : list2) {
+			String searchText = request.getParameter("txt");
+			System.out.println(searchText);
+			
+			//System.out.println(request.getParameter("searchText"));
+			
+			FkreviewDAO dao = new FkreviewDAO();
+			ArrayList<FkreviewVO> list = dao.reSearch(searchText);
+			System.out.println(list);
+			
+			
+			for (FkreviewVO vo : list) {
 				
 				Date date = new Date();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+				
+				FkcustomerDAO dao2 = new FkcustomerDAO();
+				FkcustomerVO vo2 = dao2.selectOne(vo.getNo());
+				
 			%>
 			<tr>
-				<td><%=vo2.getReno() %></td>
-				<td><%=vo2.getNo() %></td>
-				<td><a href="fkdetail.jsp?reno=<%=vo2.getReno()%>"><%=vo2.getRetitle()%></a></td>
-				<td><%= sdf.format(vo2.getRedate()) %></td>
+				<td><%=vo.getReno() %></td>
+				<td><%=vo2.getId() %></td>
+				<td><a href="fkdetail.jsp?reno=<%=vo.getReno()%>"><%=vo.getRetitle()%></a></td>
+				<td><%= sdf.format(vo.getRedate()) %></td>
 		
 			</tr>
 			
@@ -76,14 +107,11 @@
 
 	
 		<div class="row">
-			<form method="get" name="search" action="research.jsp">
+			<form action="research.jsp" method="get" name="search" >
 				<table class="pull-right">
-					<tr >
-						<td><select class="form-control" name="searchField" >
-								<option value="retitle">상품명</option>
-						</select></td>
+					<tr>
 						<td><input type="text" class="form-control"
-							placeholder="검색어 입력" name="searchText" maxlength="100"></td>
+							placeholder="상품명 입력" name="txt" maxlength="100"></td>
 						<td><button type="submit" class="btn btn-success">검색</button></td>
 					</tr>
 				</table>

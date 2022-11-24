@@ -5,19 +5,22 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import kr.co.freshkit.vo.FkcodeVO;
+import kr.co.freshkit.vo.FkorderVO;
+import kr.co.freshkit.vo.FkreviewVO;
 
 
 
 
 public class FkcodeDAO {
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://freshkit.chfv6yulywaz.ap-northeast-2.rds.amazonaws.com:3306/semidb";
-	String user = "admin";
-	String password ="dkssud1234";
-	Connection conn = null;
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+	String id = "scott";
+	String pw = "tiger";
+	Connection conn=null;
 	PreparedStatement pstmt = null;
 	StringBuffer sb = new StringBuffer();
 	ResultSet rs = null;
@@ -25,7 +28,7 @@ public class FkcodeDAO {
 	public FkcodeDAO() {
 		try {
 			Class.forName(driver);
-			conn = DriverManager.getConnection(url, user, password);
+			conn = DriverManager.getConnection(url, id, pw);
 			System.out.println("conn : " + conn);
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패");
@@ -34,6 +37,7 @@ public class FkcodeDAO {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	public ArrayList<FkcodeVO> selectAll() {
 		ArrayList<FkcodeVO> list = new ArrayList<FkcodeVO>();
@@ -62,11 +66,13 @@ public class FkcodeDAO {
 		return list;
 	}
 	
-	public FkcodeVO selectOne(int hsno) {
-		ArrayList<FkcodeVO> list = new ArrayList<FkcodeVO>();
+	
+
+	
+	public FkcodeVO selectOne2(int hsno) {
 
 		sb.setLength(0);
-		sb.append("SELECT hsno, hsname ");
+		sb.append("select hsno, hsname ");
 		sb.append("FROM fkcode ");
 		sb.append("WHERE hsno = ? ");
 		FkcodeVO vo = null;
@@ -83,10 +89,11 @@ public class FkcodeDAO {
 			// 7.레코드별 로직처리
 			while (rs.next()) {
 
+		
+				
 				String hsname = rs.getString("hsname");
 				
-				vo = new FkcodeVO(hsno,hsname);
-
+				vo = new FkcodeVO(hsno, hsname);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

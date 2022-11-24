@@ -25,7 +25,7 @@ public class FkreviewDAO {
 			try {
 				Class.forName(driver);
 				conn = DriverManager.getConnection(url,user,password);
-				System.out.println("conn : " + conn);
+				//System.out.println("conn : " + conn);
 			} catch (ClassNotFoundException e) {
 				System.out.println("드라이버 로딩 실패");
 			
@@ -161,17 +161,19 @@ public class FkreviewDAO {
 		public ArrayList<FkreviewVO> reSearch(String searchText){//특정한 리스트를 받아서 반환
 			ArrayList<FkreviewVO> list = new ArrayList<FkreviewVO>();
 			sb.setLength(0);
-			sb.append("select * from fkreview where retitle like '%'||?||'%' " );
+			sb.append("select * from fkreview  ");
+			sb.append("where retitle like '%'||?||'%' ");
+			
       try {
             
             pstmt = conn.prepareStatement(sb.toString()); 
             pstmt.setString(1,searchText);
             
 			rs = pstmt.executeQuery();
-			System.out.println("rs : " + rs);
-			System.out.println("rs.next() : " + rs.next());
+			//System.out.println("rs : " + rs);
+			//System.out.println("rs.next() : " + rs.next());
 		while(rs.next()) {
-			FkreviewVO vo = new FkreviewVO();
+			//FkreviewVO vo = new FkreviewVO();
 			
 			  int reno = rs.getInt("reno"); 
 			  int no = rs.getInt("no");
@@ -180,14 +182,16 @@ public class FkreviewDAO {
 			  String retitle = rs.getString("retitle");
 			  String reimg = rs.getString("reimg");
 			  
-			vo.setReno(reno);
+			  FkreviewVO vo = new FkreviewVO(reno, no, recontents, redate, retitle, reimg);
+
+			/*vo.setReno(reno);
 			vo.setNo(no);
 			vo.setRecontents(recontents);
 			vo.setRedate(redate);
 			vo.setRetitle(retitle);
 			vo.setReimg(reimg);
+			 */
 			list.add(vo); //리스트에 해당 인스턴스 담음
-            
          }         
       } catch(Exception e) {
          e.printStackTrace();
@@ -242,11 +246,11 @@ public class FkreviewDAO {
 		}		
 	}
 	public void deleteOne(int reno) {
-		
+
 		sb.setLength(0);
 		sb.append("DELETE FROM fkreview ");
 		sb.append("WHERE reno=? ");
-		
+
 		// 5.문장객체생성
 		try {
 			pstmt = conn.prepareStatement(sb.toString());
@@ -262,6 +266,7 @@ public class FkreviewDAO {
 		}
 
 	}
+
 	// 자원반납
 			public void close() {
 				try {

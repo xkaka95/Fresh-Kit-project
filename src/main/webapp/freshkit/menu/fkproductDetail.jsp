@@ -1,4 +1,6 @@
-
+<%@page import="kr.co.freshkit.vo.FkcodeVO"%>
+<%@page import="kr.co.freshkit.dao.FkcodeDAO"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="kr.co.freshkit.vo.FkproductVO"%>
 <%@page import="kr.co.freshkit.dao.FkproductDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -21,6 +23,30 @@ button:action {
 position: relative;
 top: 2px;
 }      
+
+* {
+font-family: "맑은고딕";
+font-weight: 550;
+font-size: 15px;
+}
+
+h1.pname_big{
+font-weight: 800;
+margin-bottom: 0px;
+}
+.table tr:not(.line_tr){
+border-bottom: white 1px;
+height: 40px;
+vertical-align: middle;
+}
+
+.price_td{
+font-size: 25px;
+}
+
+.line_tr{
+border-bottom: 1px #e0e0e0 solid;
+}
 </style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,7 +76,12 @@ if(p!=null){
 //5. 상품번호로 vo객체 얻어오기
 FkproductVO vo = dao.selectOne(pno);
 
+//fkproduct 테이블에 fkcode테이블에서 가져온 hsno값 넣기
 
+
+
+int  hsno = vo.getHsno();
+DecimalFormat formatter = new DecimalFormat("###,###");
 %>
 
 <script type="text/javascript">
@@ -105,17 +136,6 @@ function minus_num(){
     }
 }
 
-/* function goCart(){
-	var total = document.getElementById("total").value;
-	if(total!=null){
-		session.
-	}
-} */
-
-
-$(function(){
-	
-})
 
 </script>
 </head>
@@ -124,36 +144,51 @@ $(function(){
 
 <div id="container">
 <div id="1pg" style="margin-top:100px;">
-<div  style="margin-left:200px; float:left;">
-<div><img src="<%= vo.getPimg1() %>" style="width: 400px; height:500px;"/></div>
+<div  style="margin-left:100px; float:left;">
+<div><img src="<%= vo.getPimg1() %>" style="width: 500px; height:500px;"/></div>
 
 </div>
 
 		<div style=" float:right; margin-right:200px; class="shadow p-3 mb-5 bg-body rounded">
 		<form action="" name="frm">
 		
-		<h1><%=vo.getPname() %></h1>
+		<h1 class="pname_big"><%=vo.getPname() %></h1>
 		
-		<br>
-		<span class="border-bottom" style="text-decoration: line-through ;"><%=vo.getPrice() %></span>/<span class="border-bottom" style="color: red"><%= Math.round(vo.getPrice()*(1-vo.getDcratio()*0.01)) %></span>
+		
+		
 		
 
 		<table class="table table-hover" style="width:600px;">
 			<tr>
-				<td style="width:150px;">상품번호</td>
-				<td><%=vo.getPno() %></td>
-				<td><input type="hidden" name="pno" value="<%=vo.getPno() %>" /></td>
+			<hr />
+				<td style="width:150px;">상품가격</td>
+				<td class="price_td"><input type="hidden" name="pno" value="<%=vo.getPno() %>" /><%=formatter.format(vo.getPrice())%>원</td>
+				
 			</tr>
 			<tr>
-				<td>분류번호</td>
-				<td><%=vo.getHsno() %></td>
+				<td style="width:150px;">상품번호</td>
+				<td><input type="hidden" name="pno" value="<%=vo.getPno() %>" /><%=vo.getPno() %></td>
+				
+			</tr>
+		
+			<tr  class="line_tr">
+			
+			<%
+			FkcodeDAO daocode = new FkcodeDAO();
+			FkcodeVO vocode = daocode.selectOne2(hsno);
+			
+			%>
+				<td>분류명</td>
+				
+				<td><input type="hidden" name="pno" value="<%=vo.getPno() %>" /><%=vocode.getHsname() %></td>
 			</tr>
 			<tr>
 				<td>배송구분</td>
 				<td>택배배송</td>
 			</tr>
 			
-			<tr>
+			<tr  class="line_tr">
+			
 				<td>안내사항</td>
 				<td>모든 제품은 신선함을 우선으로 취급하고 있으며 구입 후 냉장/냉동 보관하여 가급적 빨리 섭취를 권장드립니다. <br>남은 제품은 냉동보관 권장 드립니다.</td>
 			</tr>
@@ -171,19 +206,38 @@ $(function(){
 			<tr>
 				<td>총 금액</td>
 				<td>
-					<input class="pp" type="text" name="pprice" id="" value="0" style="border:none;width:70px;" readonly/>원
+					<input class="pp" type="text" name="pprice" id="" value="0" style="border:none;width:70px; text-align: right;" readonly/>  원
 				</td>
 			</tr>
 			
 		</table>
 	
 		<div style="margin-top: 40px;" method="">
-		
-						
-			
-						<button type="button" id="buy" class="btn btn-outline-success btn-lg" style="font-size:larger; margin-left: 30px; margin-bottom: 50px; margin-right: 30px; width: 210px;">
+						<%
+						/* 로그인정보 가져오기 ------------------------------------- */
+						Object obj = session.getAttribute("vo");
+
+						int no = 0;
+
+						if (obj == null) {
+							%>
+							<a href="../main/fkLogin.jsp"><button type="button" id="" class="btn btn-outline-success btn-lg" style="font-size:larger; margin-left: 30px; margin-bottom: 50px; margin-right: 30px; width: 210px;">
 							<span class="">구매하기</span>
-						</button>
+							</button></a>
+						<%
+						} else {
+							%>
+							<button type="button" id="buy" class="btn btn-outline-success btn-lg" style="font-size:larger; margin-left: 30px; margin-bottom: 50px; margin-right: 30px; width: 210px;">
+								<span class="">구매하기</span>
+							</button>
+						
+						
+						<%
+						}
+						
+						/* ------------------------------------ */					
+						%>	
+
 						<a href="../cart/cart.jsp?pno=<%=vo.getPno()%>"><button type="button" id="cart" class="btn btn-outline-success btn-lg" style="font-size:larger; margin-left: 30px; margin-bottom: 50px; margin-right: 30px; width: 210px;">
 							<span class="">장바구니</span>
 						</button></a>

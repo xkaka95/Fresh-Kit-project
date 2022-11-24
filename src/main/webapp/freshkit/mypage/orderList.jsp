@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="kr.co.freshkit.vo.FkcustomerVO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
@@ -36,21 +37,23 @@ body {
 	height: 1095px;
 }
 
-#side1 {
-	background-color: #d9e2ae;
+		#side1 {
+	background-color: #d9ffb2;
 	width: 300px;
 	height: 100%;
 	min-height: 1500px;
 	float: left;
 	font-family: 'Noto Sans KR', sans-serif;
 	clear: both;
+	
 }
 
 #side1>p {
 	padding-bottom: 10px;
 	padding-left: 10px;
+	margin-left: 20px;
+	margin-bottom: 5px;
 }
-
 #header {
 	font-family: 'Noto Sans KR', sans-serif;
 }
@@ -126,7 +129,7 @@ a:hover, a:active {
 
 
 .tableFixHead tbody {
-	height: 500px;
+	height: 167px;
 }
 
 
@@ -229,13 +232,14 @@ div#table1 {
 
 						for (FkorderVO vo : list) {
 							vo2 = dao2.selectOne(vo.getPno());
+							DecimalFormat formatter = new DecimalFormat("###,###");
 						%>
 						<tr>
 							<td><img src="<%=vo2.getPimg1()%>" alt=""></td>
 							<td><a href="../menu/fkproductDetail.jsp?pno=<%=vo2.getPno()%>"><%=vo2.getPname()%></a></td>
 							<td><%=sdf.format(vo.getOdate())%></td>
 							<td><%=vo.getOno()%></td>
-							<td><%=vo.getOprice()%>원(<%=vo.getCount()%>set)</td>
+							<td><%=formatter.format(vo.getOprice())%>원(<%=vo.getCount()%>set)</td>
 							<td><%=vo.getOstatus()%></td>
 							<td><button type="submit" id="ono" name="ono"
 									class="btn btn-outline-dark btn-sm" value="<%=vo.getOno()%>"

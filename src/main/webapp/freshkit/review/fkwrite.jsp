@@ -20,18 +20,43 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
 <script type="text/javascript">
+
+//단일이미지 미리보기
+function readURL(input) {
+	  if (input.files && input.files[0]) {
+	    var reader = new FileReader();
+	    reader.onload = function(e) {
+	      document.getElementById('preview').src = e.target.result;
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    document.getElementById('preview').src = "";
+	  }
+	} 
+
+function checkStar(){
+	var rstarValue = "";
+	var rstarValue = $("input[name=rstar]:checked").val();
+	$("#view").empty();
+	$("#view").append(rstarValue);
+};
+
 
 </script>
 <style>
+.rating { margin-top: 50px;}
 .title {
-margin-left: 300px;
+	margin-left: 300px;
 	margin-bottom: 50px;
 	font-weight: bolder;
 	width: 1000px;
 	border-bottom: 4px solid #82ac64;
 	padding: 20px 0px 36px;
 	}
+
 	</style>
 </head>
 <body>
@@ -71,9 +96,10 @@ margin-left: 300px;
 					<div class="jull2">
 						<div class="jull2_1">
 							<div class="jull2_2">
-								<input data-testid="input-box" id="" name="no"
-									 type="text"  autofocus="autofocus"
+								<input data-testid="input-box" id="" name="id"
+									 type="text"  autofocus="autofocus" 
 									class="jull2_3" value="<%=vo2.getId()%>" readonly style="border:none;">
+									<input type="hidden" name="no" id="no" value="<%=vo2.getNo() %>" />
  							</div>
 						</div>
 					</div>
@@ -99,37 +125,51 @@ margin-left: 300px;
 
 				<div class="jull">
 					<div class="jull1">
-						<label class="julltext1" id="reimg">이미지</label> 
-					</div>
-					<div class="jull2">
-						<div class="jull2_1">
-							<div class="jull2_2">
-							<!-- 이미지 파일 업로드하기 -->
-							<input type="file" name="reimg" id="reimg" />
-							
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="jull">
-					<div class="jull1">
 						<label class="julltext1" id="recontents">리뷰</label> 
 					</div>
 					<div class="jull2">
 						<div class="jull2_1">
 							<div class="jull2_2" >
 								<textarea name="recontents" id="recontents" style="width:450px; height: 150px;"></textarea>
+								
 							</div>
 						</div>
 					</div>
 				</div>
+				<br><br><br><br><br>
+				<div class="jull">
+					<div class="jull1">
+						<label class="julltext1" id="reimg">이미지(필수)</label> 
+						
+					</div>
+					<div class="jull2">
+						<div class="jull2_1">
+					<input style="display:block;" type="file" name="reimg" id="reimg" onchange="readURL(this);" > 
+					<img id="preview" style="width:350px;"/>  
+							
+						</div>
+					</div>
+				</div>
+			
 				
-				
-				<br>
-				
+		<!-- <table >
+		<tr>
+			<td>평점</td>
+			<td style="margin-right:30px;">
+ 				<input type="radio" name="rstar" value="⭐⭐⭐⭐⭐">5점
+     			<input type="radio" name="rstar" value="⭐⭐⭐⭐">4점
+      			<input type="radio" name="rstar" value="⭐⭐⭐">3점
+    			<input type="radio" name="rstar" value="⭐⭐">2점
+     			<input type="radio" name="rstar" value="⭐">1점
+  		</td>
+			</tr>
+ 
+  		</table> -->
+  		
+  
+		
 			<table class="rating">
-				<tr>
+			<tr>
 			<td>평점</td>
 			<td>
 				<input type="radio" name="rstar" value="5" id="rate1"><label for="rate1">★</label>
@@ -140,17 +180,19 @@ margin-left: 300px;
 			</td>
 			</tr>
 		
-			</table>
-				
-				
+			</table>  
 				<br> <br>
 
 				<div class="btn">
 					<a href="fkreview.jsp"><input type="button" class="btn btn-light" value="목록" /></a>
-					<input type="submit" class="btn btn-success" value="리뷰 작성완료" />
+					<input type="submit" class="btn btn-success" value="리뷰 작성완료" onclick="checkStar()"/>
 				</div>
 				</div>
+				
 				</form>
+				
+				
+				
 				</div>
 			</div>
 		</div>

@@ -62,6 +62,34 @@ public class FkreplyDAO {
 		return vo;
 		
 	}
+	// csno(고객센터게시판번호)로 찾기
+	public FkreplyVO SelectOne2(int csno) {
+		
+		sb.setLength(0);
+		sb.append("select adbno,adcontents,csno from fkreply ");
+		sb.append("where csno = ? ");
+		
+		FkreplyVO vo = null;
+		try {
+			pstmt = conn.prepareStatement(sb.toString());
+			pstmt.setInt(1, csno);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String adcontents = rs.getString("adcontents");
+				int adbno = rs.getInt("adbno");
+				
+				vo = new FkreplyVO(adbno,adcontents,csno);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		return vo;
+		
+	}
 	
 	public ArrayList<FkreplyVO> selectAll(){
 		ArrayList<FkreplyVO> list = new ArrayList<FkreplyVO>();
@@ -100,8 +128,25 @@ public class FkreplyDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(sb.toString());
-			pstmt.setString(2, vo.getAdcontents());
-			pstmt.setInt(3, vo.getCsno());			
+			pstmt.setString(1, vo.getAdcontents());
+			pstmt.setInt(2, vo.getCsno());			
+			
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void insertOne2(String reply, int csno) {
+		
+		sb.setLength(0);
+		sb.append("insert into fkreply ");
+		sb.append("values (fkreply_adbno_seq.nextval,?,?) ");
+		
+		try {
+			pstmt = conn.prepareStatement(sb.toString());
+			pstmt.setString(1, reply);
+			pstmt.setInt(2, csno);			
 			
 			pstmt.executeUpdate();
 		} catch (SQLException e) {

@@ -26,7 +26,7 @@
 				String addrs1 = request.getParameter("addrs1");
 				String addrs2 = request.getParameter("addrs2");
 				String addrs3 = request.getParameter("addrs3");
-				String addrs = addrs1+" "+addrs2+" "+addrs3;
+				String addrs = addrs1+" / "+addrs2;
 				
 				String phone = request.getParameter("phone");
 				

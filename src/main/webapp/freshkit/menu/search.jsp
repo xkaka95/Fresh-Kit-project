@@ -39,7 +39,7 @@
 }
 
 #content {
-	padding: 52px 0 100px;
+	padding: 20px 0 70px;
 }
 
 .pd_mu_wrap .olki_list_wrap .top_sec {
@@ -93,7 +93,7 @@ input.text {
 }
 
 .srch_gray {
-	margin: 50px 0 50px 100px;
+	margin: 25px 0 25px 100px;
 	width: 750px;
 	/* background-color: rgb(231, 255, 111) ;*/
 }
@@ -103,10 +103,6 @@ hr {
 	border: 3px;
 }
 
-.second_wrap {
-	margin-top: 120px;
-	width: 1000px;
-}
 
 .top_sub_title {
 	color: #101010;
@@ -125,11 +121,10 @@ ul {
 }
 
 .pro_module {
-	text-align: left;
 	width: 200px;
-	min-height: 300px;
+	height: 380px;
 	position: relative;
-	margin-top: 60px;
+	margin-top: 20px;
 }
 
 .pro_list .item {
@@ -166,13 +161,13 @@ a {
 }
 
 .pd_mu_wrap .olki_list_wrap .top_sub_sec {
-	padding: 100px 0 16px;
+	padding: 50px 0 10px;
 	border-bottom: 2px solid #202020;
 }
 
 .txt_wrap {
 	font-family: "맑은고딕";
-	font-weight: 400;
+	
 	font-size: 17px;
 	line-height: 23px;
 	margin: 10px 0px 10px 0px;
@@ -200,6 +195,10 @@ span.dcratio_price {
 clear:both;
 
 height: 200px;
+}
+
+.tit_mt  {
+font-weight: 550;
 }
 </style>
 </head>
@@ -284,7 +283,7 @@ height: 200px;
 						<!-- loop -->
 						<li class="item">
 							<!--상품 리스트-->
-							<form class="cartgo<%=pno%>" action="cart.jsp" name="frm">
+							<form class="cartgo<%=pno%>" action="../cart/cart.jsp" name="frm">
 
 								<div class="pro_module">
 									<!--상품전체 module-->
@@ -296,7 +295,7 @@ height: 200px;
 										</a>
 									</div>
 									<div class="txt_wrap">
-										<input type="hidden" name="no" value="<%=vo.getPno()%>" />
+										<input type="hidden" name="pno" value="<%=vo.getPno()%>" />
 
 										<div class="tit_info">
 											<!--상품정보 div-->
@@ -321,12 +320,11 @@ height: 200px;
 
 										<button type="button" id="cart<%=pno%>"
 											class="btn btn-outline-primary">장바구니</button>
-										<a href="fkviewcart.jsp"><button type="button"
-												id="order_in" class="btn btn-outline-danger">구매하기</button></a>
+										<button type="button"
+												id="buy<%=pno %>" class="btn btn-outline-danger">구매하기</button>
 
 									</div>
 								</div>
-								
 							</form>
 						</li>
 						<!--loop 끝-->
@@ -357,20 +355,26 @@ height: 200px;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
 
-
 <%FkproductDAO dao1 = new FkproductDAO();
 ArrayList<FkproductVO> list2 = dao1.selectAll();
 for (FkproductVO vo2 : list) {
 	int pno3 = vo2.getPno();%>
-
-	$(function() {
+$(function() {
 	$("button#cart<%=pno3%>").on("click", function() {
-		
+		console.log("gg");
 		
 		$('form[class="cartgo<%=pno3%>"]').submit();
 		});
 
+	$("button#buy<%=pno3%>").on("click", function() {
+		console.log("gg");
+		
+		$('form[class="cartgo<%=pno3%>"]').submit();
+		});
 	});
 <%}%>
+	
 </script>
+
+
 </html>
