@@ -138,7 +138,9 @@ function checkStar(){
 						<div class="jull2_1">
 							<div class="jull2_2">
 							
-					<img src="/real/freshkit/upload/<%=vo.getReimg() %>" style="width:350px; height:300px;" alt=""/>
+
+					<img src="/fresh/freshkit/upload/<%=vo.getReimg() %>" style="width:350px; height:300px;" alt=""/>
+
 						
 							</div>
 						</div>

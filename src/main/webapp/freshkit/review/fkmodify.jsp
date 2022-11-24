@@ -143,7 +143,9 @@ window.onload=function(){
 							<div class="jull2_2">
 							
 							<input style="display: block;"type="file" name="reimg" id="reimg" onchange="readURL(this);"> 
-							<img src="/real/freshkit/upload/<%=vo.getReimg() %>" id="preview" style="width:350px;height:300px;"/>  
+
+							<img src="/fresh/freshkit/upload/<%=vo.getReimg() %>" id="preview" style="width:350px;height:300px;"/>  
+
 							
 							</div>
 						</div>
