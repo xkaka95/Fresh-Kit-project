@@ -24,7 +24,7 @@ position: relative;
 top: 2px;
 }      
 
-* {
+tbody * {
 font-family: "맑은고딕";
 font-weight: 550;
 font-size: 15px;
