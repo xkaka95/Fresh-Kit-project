@@ -301,7 +301,7 @@
 						<%
 						} else{
 						%>
-						<input type="button" value="삭제" class="btn btn-danger" />
+						
 						<%
 						}
 						%>
