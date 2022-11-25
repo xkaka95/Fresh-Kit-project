@@ -310,8 +310,8 @@
                 <tr>
                     <td>성별</td>
                     <td>
-                        <input type="radio" name="gen" id="gen" value="남자" />남
-                        <input type="radio" name="gen" id="gen" value="여자" />여
+                        <input type="radio" name="gen" id="gen" value="남" />남
+                        <input type="radio" name="gen" id="gen" value="여" />여
                     </td>
                     <td><input type="text" name="gender" id="gender" value=""/></td>
                 </tr>
