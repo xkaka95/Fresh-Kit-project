@@ -112,9 +112,6 @@
 		</div>
 	</div>
 	
-	
-	
-	
 	<br><br><br>
 	<div class="fk_sns">
 		<div class="h4 pb-2 mb-4 text-success border-bottom border-success"></div>
