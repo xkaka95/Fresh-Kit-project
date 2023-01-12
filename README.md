@@ -6,8 +6,8 @@
 
 # FRESH KIT
 
-**사회적 거리두기의 영향으로 인해 규모가 커진 밀키트 판매 수요가 외식 물가 상승 등의 이유로 급등하였습니다. 이에 따라 수요층이 확대된 밀키트의 판매를 기획하였고
- 주 이용고객으로 1인 가구인 20~30대인 젊은 층과 새로 유입된 중장년층까지 신선하고 다양한 요리를 쉽게 인터넷을 통해 구매할 수 있도록 밀키트 판매  ‘Fresh Kit’  페이지를 구현하였습니다.  **
+**사회적 거리두기의 영향으로 인해 규모가 커진 밀키트 판매 수요가 외식 물가 상승 등의 이유로 급등하였습니다. 이에 따라 수요층이 확대된 밀키트의 판매를 기획하였습니다.
+ 주 이용고객으로 1인 가구인 20~30대인 젊은 층과 새로 유입된 중장년층까지 신선하고 다양한 요리를 쉽게 인터넷을 통해 구매할 수 있도록 밀키트 판매  ‘Fresh Kit’  페이지를 만들었습니다.  **
 
 **설명 2.**
 
@@ -22,6 +22,7 @@ If you’re using this demo, please **★Star** this repository to show your int
 | Main page                                                                                                        | Menu page                                                                                                  |
 | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | [![Screenshot of store homepage](./docs/img/online-boutique-frontend-1.png)](./docs/img/online-boutique-frontend-1.png) | [![Screenshot of checkout screen](./docs/img/online-boutique-frontend-2.png)](./docs/img/online-boutique-frontend-2.png) |
+
 
 | Join Us page                                                                                                        | Login page                                                                                                  |
 | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
@@ -39,7 +40,6 @@ If you’re using this demo, please **★Star** this repository to show your int
 ---
 
 
-22.12.01 소연 수정
 ---
 
 ## Deploy Online Boutique variations with Kustomize
