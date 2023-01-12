@@ -23,7 +23,6 @@ If you’re using this demo, please **★Star** this repository to show your int
 | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | [![Screenshot of store homepage](./docs/img/online-boutique-frontend-1.png)](./docs/img/online-boutique-frontend-1.png) | [![Screenshot of checkout screen](./docs/img/online-boutique-frontend-2.png)](./docs/img/online-boutique-frontend-2.png) |
 
-
 | Join Us page                                                                                                        | Login page                                                                                                  |
 | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | [![Screenshot of store homepage](./docs/img/online-boutique-frontend-1.png)](./docs/img/online-boutique-frontend-1.png) | [![Screenshot of checkout screen](./docs/img/online-boutique-frontend-2.png)](./docs/img/online-boutique-frontend-2.png) |
@@ -38,6 +37,7 @@ If you’re using this demo, please **★Star** this repository to show your int
 - **Framework & tool**: Eclipse, Bootstrap, eXERD
 - **DB**: oracle
 ---
+
 
 
 ---
