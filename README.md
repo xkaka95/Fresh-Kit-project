@@ -18,7 +18,7 @@
 
 ## Screenshots
 
-| Main page                                                                                                        | Menu page                                                                                                  |Main page                                                                                                        | Menu page                                                                                                  |
+| Main page                                                                                                        | Menu page                                                                                                  | Main page                                                                                                        | Menu page                                                                                                  |
 | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | [![Screenshot of store homepage](./docs/img/online-boutique-frontend-1.png)](./docs/img/online-boutique-frontend-1.png) | [![Screenshot of checkout screen](./docs/img/online-boutique-frontend-2.png)](./docs/img/online-boutique-frontend-2.png) |
 
