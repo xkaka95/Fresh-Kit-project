@@ -12,10 +12,7 @@
 
 
 
-> 👓**Note to Googlers:** Please fill out the form at
-> [go/microservices-demo](http://go/microservices-demo) if you are using this
-> application.
-
+```
 
 ## 개발환경
 
